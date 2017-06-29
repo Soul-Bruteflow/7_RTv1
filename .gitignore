@@ -2,9 +2,6 @@
 ._*
 ._.*
 
-# Clion
-CMakeLists.txt
-
 # Folders
 .idea/
 cmake-build-debug/
