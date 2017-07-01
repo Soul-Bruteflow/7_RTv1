@@ -10,26 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <rtv_error.h>
+#include "rtv1.h"
 
 int		main(int ac, char **av)
 {
-	t_wolf *wolf;
+	t_rtv	*rtv;
+	char	*errors[number_of_errors];
 
+	rtv_init_errors(errors);
 	if (ac == 2)
 	{
-		wolf = (t_wolf*)malloc(sizeof(t_wolf));
-		if (wolf == NULL)
-			wolf_error(MALLOCK_ERROR);
-		wolf = wolf_init(wolf, 800, 600, "wolf3d, \0");
-		wolf->av = av;
-		map_parser(wolf);
-		wolf->pitch = 800 *4;
-		wolf->offset = 0;
-		game_loop(wolf);
-		quit(wolf);
+		rtv = rtv_init(errors, av);
+
+		rtv->errors = errors;
+
+		rtv_error(sdl_init_error, rtv->errors);
+
+//		wolf = wolf_init(wolf, 800, 600, "wolf3d, \0");
+//		wolf->av = av;
+//		map_parser(wolf);
+//		wolf->pitch = 800 *4;
+//		wolf->offset = 0;
+//		game_loop(wolf);
+//		quit(wolf);
 	}
 	else
-		wolf_error(USSAGE_ERROR);
+		rtv_error(usage_error, errors);
 }
 
