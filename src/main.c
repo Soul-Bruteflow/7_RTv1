@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rtv_error.h>
 #include "rtv1.h"
+#include "rtv1_error.h"
+#include "rtv1_support.h"
+#include "rtv1_defines.h"
+#include "rtv1_constants.h"
 
 int		main(int ac, char **av)
 {
@@ -22,10 +25,10 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		rtv = rtv_init(errors, av);
+		screen_create(rtv, 800, 600, "RTv1, 800x600\0");
 
-		rtv->errors = errors;
-
-		rtv_error(sdl_init_error, rtv->errors);
+//error test
+//		rtv_error(sdl_window_error, rtv->utl->errors);
 
 //		wolf = wolf_init(wolf, 800, 600, "wolf3d, \0");
 //		wolf->av = av;

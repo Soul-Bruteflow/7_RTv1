@@ -1,6 +1,10 @@
 #ifndef _RTV1_H
 #define _RTV1_H
 
+#include "rtv1_error.h"
+#include "rtv1_support.h"
+#include "rtv1_defines.h"
+#include "rtv1_constants.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include <math.h>
@@ -86,6 +90,9 @@ void				print_error_and_exit(const char *error_text, Uint8 sdl);
 /*
 ** RTv1
 */
+void	ft_noise(t_rtv *rtv);
+
 t_rtv				*rtv_init(char **errors, char **av);
+void				screen_create(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
 
 #endif

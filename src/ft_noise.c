@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_noise.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/08 12:19:23 by mvlad             #+#    #+#             */
+/*   Updated: 2017/06/08 12:19:35 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "rtv1.h"
+
+void	ft_noise(t_rtv *rtv)
+{
+	Uint16	i;
+	Uint16	x;
+	Uint16	y;
+	Uint32	offset;
+
+	i = 0;
+	while (i < 1000)
+	{
+		x = (Uint16)(rand() % rtv->win->width);
+		y = (Uint16)(rand() % rtv->win->->height);
+		offset = (Uint32)((rtv->win->->width * 4 * y) + x * 4);
+		rtv->win->->draw_buffer[offset + 0] = (Uint8)(rand() % 256);		// b
+		rtv->win->->draw_buffer[offset + 1] = (Uint8)(rand() % 256);		// g
+		rtv->win->->draw_buffer[offset + 2] = (Uint8)(rand() % 256);		// r
+		rtv->win->->draw_buffer[offset + 3] = SDL_ALPHA_OPAQUE;				// a
+		i++;
+	}
+}

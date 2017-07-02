@@ -3,14 +3,9 @@
 
 
 /*
-** SDL Error codes
+** Allocation
 */
-# define INIT_ERROR 1
-# define WINDOW_ERROR 2
-# define RENDERER_ERROR 3
-/*
-** General Error codes
-*/
-# define MALLOCK_ERROR 0
+#define ONE_STR 1
+
 
 #endif
