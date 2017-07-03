@@ -23,12 +23,12 @@ void	ft_noise(t_rtv *rtv)
 	while (i < 1000)
 	{
 		x = (Uint16)(rand() % rtv->win->width);
-		y = (Uint16)(rand() % rtv->win->->height);
-		offset = (Uint32)((rtv->win->->width * 4 * y) + x * 4);
-		rtv->win->->draw_buffer[offset + 0] = (Uint8)(rand() % 256);		// b
-		rtv->win->->draw_buffer[offset + 1] = (Uint8)(rand() % 256);		// g
-		rtv->win->->draw_buffer[offset + 2] = (Uint8)(rand() % 256);		// r
-		rtv->win->->draw_buffer[offset + 3] = SDL_ALPHA_OPAQUE;				// a
+		y = (Uint16)(rand() % rtv->win->height);
+		offset = (Uint32)((rtv->win->width * 4 * y) + x * 4);
+		rtv->win->draw_buf[offset + 0] = (Uint8)(rand() % 256);		// b
+		rtv->win->draw_buf[offset + 1] = (Uint8)(rand() % 256);		// g
+		rtv->win->draw_buf[offset + 2] = (Uint8)(rand() % 256);		// r
+		rtv->win->draw_buf[offset + 3] = SDL_ALPHA_OPAQUE;			// a
 		i++;
 	}
 }

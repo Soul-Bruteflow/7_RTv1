@@ -94,5 +94,18 @@ void	ft_noise(t_rtv *rtv);
 
 t_rtv				*rtv_init(char **errors, char **av);
 void				screen_create(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
+void				rtv_loop(t_rtv *rtv);
+
+/*
+** Keyboard
+*/
+void				keyboard_core(t_rtv *rtv);
+
+/*
+** Screen
+*/
+void	rtv_quit(t_rtv *rtv);
+void	screen_clear(t_rtv *rtv);
+void	screen_update(t_rtv *rtv);
 
 #endif

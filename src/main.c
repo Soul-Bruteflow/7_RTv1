@@ -27,6 +27,11 @@ int		main(int ac, char **av)
 		rtv = rtv_init(errors, av);
 		screen_create(rtv, 800, 600, "RTv1, 800x600\0");
 
+		screen_clear(rtv);
+		ft_noise(rtv);
+		screen_update(rtv);
+
+		rtv_loop(rtv);
 //error test
 //		rtv_error(sdl_window_error, rtv->utl->errors);
 
