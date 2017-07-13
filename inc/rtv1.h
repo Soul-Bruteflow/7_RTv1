@@ -1,25 +1,9 @@
 #ifndef _RTV1_H
 #define _RTV1_H
 
-#include "rtv1_error.h"
-#include "rtv1_support.h"
-#include "rtv1_defines.h"
-#include "rtv1_constants.h"
-# include "libft.h"
-# include "get_next_line.h"
-# include <math.h>
 # include <SDL2/SDL.h>
-# include <SDL2_image/SDL_image.h>
-# include <SDL2_ttf/SDL_ttf.h>
-# include <SDL2_mixer/SDL_mixer.h>
+# include "rtv1_error.h"
 
-/*
-** Boolean replacement
-*/
-typedef enum		e_bool
-{
-	false, true
-}					t_bool;
 /*
 ** RGBA
 */
@@ -73,11 +57,22 @@ typedef struct		s_utl
 	char 			**av;
 }					t_utl;
 
+/*
+** Scene
+*/
+typedef struct		s_scene
+{
+	t_obj3d			*objects;
+	t_bool			hit;
+	t_ray			r;
+}					t_scene;
+
 typedef struct		s_rtv
 {
-	struct s_sdl	*sdl;
-	struct s_win	*win;
-	struct s_utl	*utl;
+	t_sdl			*sdl;
+	t_win			*win;
+	t_utl			*utl;
+	t_scene			*scene;
 }					t_rtv;
 
 /*

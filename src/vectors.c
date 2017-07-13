@@ -1,0 +1,48 @@
+#include "vectors.h"
+
+t_vec3d	vec3d_add(t_vec3d *v1, t_vec3d *v2)
+{
+	t_vec3d result;
+
+	result.x = v1->x + v2->x;
+	result.y = v1->y + v2->y;
+	result.z = v1->z + v2->z;
+	return (result);
+}
+
+t_vec3d	vec3d_sub(t_vec3d *v1, t_vec3d *v2)
+{
+	t_vec3d result;
+
+	result.x = v1->x - v2->x;
+	result.y = v1->y - v2->y;
+	result.z = v1->z - v2->z;
+	return (result);
+}
+
+float vec3d_dot(t_vec3d *v1, t_vec3d *v2)
+{
+	float result;
+
+	result = (v1->x * v2->x) + (v1->y * v2->y) + (v1->z * v2->z);
+	return (result);
+}
+
+t_vec3d vec3d_scale(float c, t_vec3d *v)
+{
+	t_vec3d result;
+
+	result.x = v->x * c;
+	result.y = v->y * c;
+	result.z = v->z * c;
+	return (result);
+}
+
+t_vec3d vec3d_cross(t_vec3d *v1, t_vec3d *v2){
+	t_vec3d result;
+
+	result.x = (v1->y * v2->z) - (v1->z * v2->y);
+	result.y = (v1->z * v2->x) - (v1->x * v2->z);
+	result.z = (v1->x * v2->y) - (v1->y * v2->x);
+	return (result);
+}
