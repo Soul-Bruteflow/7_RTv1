@@ -11,6 +11,7 @@
 typedef struct	s_obj3d
 {
 	void		*data;
+	t_bool		hit;
 	t_bool		(*intersect)(t_ray *, void *);
 }				t_obj3d;
 
@@ -25,6 +26,6 @@ typedef struct	s_shpere
 }				t_sphere;
 
 /* Sphere intersection */
-t_bool intersect_sphere(t_ray *r, t_sphere *s);
+t_bool intersect_sphere(t_ray *r, void *s);
 
 #endif

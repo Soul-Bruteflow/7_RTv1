@@ -29,16 +29,18 @@ void	print_error_and_exit(const char *error_text, Uint8 sdl)
 	exit(1);
 }
 
-void	rtv_init_errors(char **errors)
+void	rtv_error(t_error error_code)
 {
-	errors[0] = "Usage: ./RTv1 <scene>";
-	errors[1] = "Malloc allocation error.";
-	errors[2] = "SDL error: init. ";
-	errors[3] = "SDL error: window. ";
-	errors[4] = "SDL error: renderer. ";
-}
-
-void	rtv_error(t_error error_code, char **errors)
-{
-	print_error_and_exit(errors[error_code], 0);
+	if (error_code == usage_error)
+		print_error_and_exit("Usage: ./RTv1 <scene>", 0);
+	else if (error_code == malloc_error)
+		print_error_and_exit("Malloc allocation error.", 0);
+	else if (error_code == sdl_init_error)
+		print_error_and_exit("SDL error: init. ", 1);
+	else if (error_code == sdl_window_error)
+		print_error_and_exit("SDL error: window. ", 1);
+	else if (error_code == sdl_renderer_error)
+		print_error_and_exit("SDL error: renderer. ", 1);
+	else
+		print_error_and_exit("No such error code.", 0);
 }

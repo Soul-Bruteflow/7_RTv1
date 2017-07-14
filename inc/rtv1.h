@@ -47,28 +47,22 @@ typedef struct		s_win
 }					t_win;
 
 /*
-** Utility.
-** errors - error messages.
-** av - ./RTv1 arguments
-*/
-typedef struct		s_utl
-{
-	char			**errors;
-	char 			**av;
-}					t_utl;
-
-/*
 ** Scene
 */
 typedef struct		s_scene
 {
-	t_obj3d			*objects;
-	t_bool			hit;
-	t_ray			r;
+	t_obj3d			*obj;
+	t_sphere   		*spheres;
+	t_ray			*ray;
 }					t_scene;
 
+/*
+** Main struct.
+** av - ./RTv1 arguments
+*/
 typedef struct		s_rtv
 {
+	char 			**av;
 	t_sdl			*sdl;
 	t_win			*win;
 	t_utl			*utl;
@@ -78,8 +72,7 @@ typedef struct		s_rtv
 /*
 ** Errors
 */
-void				rtv_init_errors(char **errors);
-void				rtv_error(t_error error_code, char **errors);
+void				rtv_error(t_error error_code);
 void				print_error_and_exit(const char *error_text, Uint8 sdl);
 
 /*
@@ -87,7 +80,7 @@ void				print_error_and_exit(const char *error_text, Uint8 sdl);
 */
 void	ft_noise(t_rtv *rtv);
 
-t_rtv				*rtv_init(char **errors, char **av);
+t_rtv				*rtv_init(char **av);
 void				screen_create(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
 void				rtv_loop(t_rtv *rtv);
 
