@@ -4,16 +4,15 @@
 //# include "includes.h"
 # include "vectors.h"
 # include "raytrace.h"
+# include "bool.h"
 
-/*
-** Object
-*/
-typedef struct	s_obj3d
+typedef enum	e_obj_type
 {
-	void		*data;
-	t_bool		hit;
-	t_bool		(*intersect)(t_ray *, void *);
-}				t_obj3d;
+	sphere,
+	plane,
+	cylinder,
+	cone
+}				t_obj_type;
 
 /*
 ** Math SPHERE primitive definition
@@ -25,7 +24,20 @@ typedef struct	s_shpere
 	int			material;
 }				t_sphere;
 
+/*
+** Object
+*/
+typedef struct	s_obj3d
+{
+	t_sphere   	*sphere;
+	t_bool		hit;
+	t_bool		(*intersect)(t_ray *, void *);
+}				t_obj3d;
+
 /* Sphere intersection */
-t_bool intersect_sphere(t_ray *r, void *s);
+t_bool			intersect_sphere(t_ray *r, t_sphere *s);
+t_sphere		*new_sphere();
+void			set_sphere_radius(t_sphere *sphere, float new_radius);
+void			set_sphere_position(t_sphere *sphere, t_vec3d new_position);
 
 #endif

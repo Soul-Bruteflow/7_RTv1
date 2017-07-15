@@ -3,6 +3,7 @@
 
 # include <SDL2/SDL.h>
 # include "rtv1_error.h"
+# include "objects.h"
 
 /*
 ** RGBA
@@ -51,8 +52,7 @@ typedef struct		s_win
 */
 typedef struct		s_scene
 {
-	t_obj3d			*obj;
-	t_sphere   		*spheres;
+	t_obj3d			**obj;
 	t_ray			*ray;
 }					t_scene;
 
@@ -65,7 +65,6 @@ typedef struct		s_rtv
 	char 			**av;
 	t_sdl			*sdl;
 	t_win			*win;
-	t_utl			*utl;
 	t_scene			*scene;
 }					t_rtv;
 
@@ -83,6 +82,20 @@ void	ft_noise(t_rtv *rtv);
 t_rtv				*rtv_init(char **av);
 void				screen_create(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
 void				rtv_loop(t_rtv *rtv);
+
+
+/*
+** Raycast
+*/
+void ray_cast(t_rtv *rtv);
+
+/*
+** Scene
+*/
+t_scene *new_scene(Uint8 obj_number);
+void create_sceen_one(t_scene *scene);
+t_scene *create_sceen(int sceen_number);
+t_obj3d *new_object(t_obj_type object_type);
 
 /*
 ** Keyboard

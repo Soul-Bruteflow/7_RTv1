@@ -22,10 +22,6 @@ t_rtv	*rtv_init(char **av)
 	if (rtv_tmp->sdl == NULL)
 		rtv_error(malloc_error);
 
-	rtv_tmp->utl = malloc(sizeof(*(rtv_tmp->win)));
-	if (rtv_tmp->sdl == NULL)
-		rtv_error(malloc_error);
-
 	rtv_tmp->av = av;
 	rtv_tmp->win->draw_buf = NULL;
 	rtv_tmp->win->pitch = 800 * 4;
