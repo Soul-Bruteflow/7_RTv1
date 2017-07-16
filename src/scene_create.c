@@ -28,11 +28,11 @@ void create_sceen_one(t_scene *scene)
 
 	t_vec3d sphere_position;
 
-	sphere_position.x = 20;
-	sphere_position.y = 20;
-	sphere_position.z = 20;
+	sphere_position.x = 200;
+	sphere_position.y = 400;
+	sphere_position.z = 0;
 	/* Sphere radius */
-	set_sphere_radius(scene->obj[0]->sphere, 20);
+	set_sphere_radius(scene->obj[0]->sphere, 50);
 	set_sphere_position(scene->obj[0]->sphere, sphere_position);
 }
 

@@ -22,3 +22,10 @@ void	set_sphere_position(t_sphere *sphere, t_vec3d new_position)
 	sphere->pos.y = new_position.y;
 	sphere->pos.z = new_position.z;
 }
+
+//void	set_sphere_color(t_sphere *sphere, t_vec3d new_position)
+//{
+//	sphere->pos.x = new_position.x;
+//	sphere->pos.y = new_position.y;
+//	sphere->pos.z = new_position.z;
+//}

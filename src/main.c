@@ -22,13 +22,16 @@ int		main(int ac, char **av)
 		screen_create(rtv, 800, 600, "RTv1, 800x600\0");
 
 		rtv->scene = create_sceen(1);
-		ray_cast(rtv);
 
-//		screen_clear(rtv);
+
+		screen_clear(rtv);
+
+		ray_cast(rtv);
 //		ft_noise(rtv);
-//		screen_update(rtv);
+
+		screen_update(rtv);
 //
-//		rtv_loop(rtv);
+		rtv_loop(rtv);
 
 
 
