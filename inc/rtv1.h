@@ -6,17 +6,6 @@
 # include "objects.h"
 
 /*
-** RGBA
-*/
-typedef struct		s_rgba
-{
-	Uint8			r;
-	Uint8			g;
-	Uint8			b;
-	Uint8			a;
-}					t_rgba;
-
-/*
 ** Basic SDL2 variables
 ** key_state - current key code
 */
@@ -53,6 +42,8 @@ typedef struct		s_win
 typedef struct		s_scene
 {
 	t_obj3d			**obj;
+	t_material		**material;
+	t_light			**light;
 	t_ray			*ray;
 }					t_scene;
 
@@ -92,7 +83,7 @@ void ray_cast(t_rtv *rtv);
 /*
 ** Scene
 */
-t_scene *new_scene(Uint8 obj_number);
+t_scene *new_scene(Uint8 obj_number, Uint8 lights_number);
 void create_sceen_one(t_scene *scene);
 t_scene *create_sceen(int sceen_number);
 t_obj3d *new_object(t_obj_type object_type);
@@ -109,5 +100,10 @@ void	rtv_quit(t_rtv *rtv);
 void	screen_clear(t_rtv *rtv);
 void	screen_update(t_rtv *rtv);
 void	draw_pixel(Uint16 x, Uint16 y, t_rgba *color, t_rtv *rtv);
+
+/*
+** Math
+*/
+t_bool equal_abs(float a, float b, float epsilon);
 
 #endif

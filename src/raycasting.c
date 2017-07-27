@@ -8,10 +8,10 @@ void ray_cast(t_rtv *rtv)
 	i = 0;
 
 	t_rgba tmp_color;
-	tmp_color.r = 200;
-	tmp_color.g = 0;
-	tmp_color.b = 0;
-	tmp_color.a = SDL_ALPHA_OPAQUE;
+	tmp_color.red = 200;
+	tmp_color.green = 0;
+	tmp_color.blue = 0;
+	tmp_color.alpha = SDL_ALPHA_OPAQUE;
 
 	while (i < rtv->win->height)
 	{
@@ -20,8 +20,11 @@ void ray_cast(t_rtv *rtv)
 		while (j < rtv->win->width)
 		{
 			rtv->scene->obj[0]->hit = intersect_sphere(rtv->scene->ray, rtv->scene->obj[0]->sphere);
+//			rtv->scene->obj[1]->hit = intersect_plane_ray(rtv->scene->ray, rtv->scene->obj[1]->plane);
 			if(rtv->scene->obj[0]->hit)
 				draw_pixel(i, j, &tmp_color, rtv);
+//			if(rtv->scene->obj[1]->hit)
+//				draw_pixel(i, j, &tmp_color, rtv);
 //				printf("++");
 //			else
 //				printf("--");
