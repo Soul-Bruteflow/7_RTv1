@@ -21,39 +21,19 @@ t_scene *new_scene(Uint8 number_of_objects, Uint8 number_of_lights)
 	if (scene->obj == NULL)
 		rtv_error(malloc_error);
 	return (scene);
+	scene->objects_n = number_of_objects;
+	scene->lights_n = number_of_objects;
 }
 
 void create_sceen_one(t_scene *scene)
 {
 	scene->obj[0] = new_object(sphere);
-//	scene->obj[1] = new_object(plane);
-//	scene->obj[0].intersect = intersect_sphere;
-//	/* Position the sphere */
-//	scene->obj[0].data
-////	s.pos.y = 20;
-////	s.pos.z = 20;
+	scene->material[0] = new_material();
+	scene->light[0] = new_light();
 
-	t_vec3d sphere_position;
-
-	sphere_position.x = 200;
-	sphere_position.y = 300;
-	sphere_position.z = 0;
-	/* Sphere radius */
-	set_sphere_radius(scene->obj[0]->sphere, 100);
-	set_sphere_position(scene->obj[0]->sphere, sphere_position);
-
-//	scene->obj[1]->plane->d = 6;
-//	scene->obj[1]->plane->n.x = 0;
-//	scene->obj[1]->plane->n.y = 0;
-//	scene->obj[1]->plane->n.z = 1;
-
-//	scene->obj[1]->plane->pos.x = 0;
-//	scene->obj[1]->plane->pos.y = 0;
-//	scene->obj[1]->plane->pos.z = 20;
-//
-//	scene->obj[1]->plane->rot.x = 0;
-//	scene->obj[1]->plane->rot.y = 0;
-//	scene->obj[1]->plane->rot.z = -1;
+	set_sphere(scene->obj[0]->sphere, ft_set_vector(200, 300, 0), 100, 0);
+	set_material(scene->material[0], ft_set_color(1, 0, 0, SDL_ALPHA_OPAQUE), 0.2);
+	set_light(scene->light[0], ft_set_vector(0, 240, -100), ft_set_color(1, 1, 1, SDL_ALPHA_OPAQUE));
 }
 
 t_scene *create_sceen(int sceen_number)

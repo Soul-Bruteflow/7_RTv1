@@ -45,6 +45,8 @@ typedef struct		s_scene
 	t_material		**material;
 	t_light			**light;
 	t_ray			*ray;
+	Uint8 			objects_n;
+	Uint8 			lights_n;
 }					t_scene;
 
 /*

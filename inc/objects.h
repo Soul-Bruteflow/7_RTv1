@@ -58,6 +58,7 @@ t_bool intersect_plane_ray(t_ray *r, t_plane *p);
 t_sphere		*new_sphere();
 void			set_sphere_radius(t_sphere *sphere, float new_radius);
 void			set_sphere_position(t_sphere *sphere, t_vec3d new_position);
+void			set_sphere(t_sphere *sphere, t_vec3d new_position, float new_radius, int material);
 
 
 t_plane *new_plane();

@@ -23,6 +23,13 @@ void	set_sphere_position(t_sphere *sphere, t_vec3d new_position)
 	sphere->pos.z = new_position.z;
 }
 
+void	set_sphere(t_sphere *sphere, t_vec3d new_position, float new_radius, int material)
+{
+	set_sphere_radius(sphere, new_radius);
+	set_sphere_position(sphere, new_position);
+	sphere->material = material;
+}
+
 //void	set_sphere_color(t_sphere *sphere, t_vec3d new_position)
 //{
 //	sphere->pos.x = new_position.x;
