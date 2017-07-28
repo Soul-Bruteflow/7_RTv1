@@ -14,21 +14,19 @@ void action(t_rtv *rtv)
 	}
 	if(currentSphere == -1) return;
 
-
-
-	vector scaled = vectorScale(t, &r.dir);
-	vector newStart = vectorAdd(&r.start, &scaled);
+	t_vec3d scaled = vec3d_scale(t, &rtv->scene->ray->dir);
+	t_vec3d newStart = vec3d_add(&rtv->scene->ray->start, &scaled);
 
 	/* Find the normal for this new vector at the point of intersection */
-	vector n = vectorSub(&newStart, &spheres[currentSphere].pos);
-	float temp = vectorDot(&n, &n);
+	t_vec3d n = vec3d_sub(&newStart, &rtv->scene->obj[currentSphere]->sphere->pos);
+	float temp = vec3d_dot(&n, &n);
 	if(temp == 0) return;
 
 	temp = 1.0f / sqrtf(temp);
-	n = vectorScale(temp, &n);
+	n = vec3d_scale(temp, &n);
 
 	/* Find the material to determine the colour */
-	material currentMat = materials[spheres[currentSphere].material];
+	t_material currentMat = *rtv->scene->material[rtv->scene->obj[currentSphere]->sphere->material];
 
 	/* Find the value of the light at this point */
 	unsigned int j;
