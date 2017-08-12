@@ -11,28 +11,19 @@ t_sphere *new_sphere()
 	return (sphere);
 }
 
-void	set_sphere_radius(t_sphere *sphere, float new_radius)
+void	set_sphere_radius(t_obj3d *obj, float new_radius)
 {
-	sphere->radius = new_radius;
+	t_sphere *tmp_sphere;
+
+	tmp_sphere = obj->type;
+	tmp_sphere->radius = new_radius;
 }
 
-void	set_object_position(t_obj3d *obj, t_vec3d new_position)
+void	set_sphere(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material)
 {
-	obj->pos.x = new_position.x;
-	obj->pos.y = new_position.y;
-	obj->pos.z = new_position.z;
-}
-
-void	set_object_material(t_obj3d *obj, Uint16 new_material)
-{
-	obj->material = new_material;
-}
-
-void	set_sphere(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 material)
-{
-	set_sphere_radius(sphere, new_radius);
-	set_sphere_position(sphere, new_position);
-	obj->material = material;
+	set_object_position(obj, new_position);
+	set_object_material(obj, new_material);
+	set_sphere_radius(obj, new_radius);
 }
 
 //void	set_sphere_color(t_sphere *sphere, t_vec3d new_position)
