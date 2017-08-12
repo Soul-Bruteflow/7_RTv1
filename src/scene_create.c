@@ -1,56 +1,67 @@
 #include "rtv1.h"
 #include "objects.h"
 
-t_scene *new_scene(Uint8 number_of_objects, Uint8 number_of_lights)
+/*
+** Allocates memory for new scene. And all objects,
+** lights and materials defined bu arguments.
+*/
+t_scene *new_scene(Uint8 nbr_of_objs, Uint8 nbr_of_mats, Uint8 nbr_of_lights)
 {
 	t_scene *scene;
 
 	scene = malloc(sizeof(*(scene)));
 	if (scene == NULL)
 		rtv_error(malloc_error);
-	scene->obj = malloc(number_of_objects * sizeof(scene->obj));
-	if (scene->obj == NULL)
+	scene->objects = malloc(nbr_of_objs * sizeof(scene->objects));
+	if (scene->objects == NULL)
 		rtv_error(malloc_error);
-	scene->material = malloc(number_of_objects * sizeof(scene->material));
-	if (scene->material == NULL)
+	scene->materials = malloc(nbr_of_mats * sizeof(scene->materials));
+	if (scene->materials == NULL)
 		rtv_error(malloc_error);
-	scene->light = malloc(number_of_lights * sizeof(scene->light));
-	if (scene->light == NULL)
+	scene->lights = malloc(nbr_of_lights * sizeof(scene->lights));
+	if (scene->lights == NULL)
 		rtv_error(malloc_error);
-	scene->ray = malloc(sizeof(*(scene->ray)));
-	if (scene->obj == NULL)
-		rtv_error(malloc_error);
+	scene->objects_n = nbr_of_objs;
+	scene->materials_n = nbr_of_mats;
+	scene->lights_n = nbr_of_lights;
 	return (scene);
-	scene->objects_n = number_of_objects;
-	scene->lights_n = number_of_objects;
 }
 
 void create_sceen_one(t_scene *scene)
 {
-	scene->obj[0] = new_object(sphere);
-	scene->material[0] = new_material();
-	scene->light[0] = new_light();
+	scene->objects[0] = new_object(sphere);
+	scene->objects[1] = new_object(sphere);
+	scene->objects[2] = new_object(sphere);
+	scene->materials[0] = new_material();
+	scene->materials[1] = new_material();
+	scene->materials[2] = new_material();
+	scene->lights[0] = new_light();
+	scene->lights[1] = new_light();
+	scene->lights[2] = new_light();
 
-	set_sphere(scene->obj[0]->sphere, ft_set_vector(200, 300, 0), 100, 0);
-	set_material(scene->material[0], ft_set_color(1, 0, 0, SDL_ALPHA_OPAQUE), 0.2);
-	set_light(scene->light[0], ft_set_vector(0, 240, -100), ft_set_color(1, 1, 1, SDL_ALPHA_OPAQUE));
+	set_sphere(scene->objects[0], ft_set_vector(0, 0, 0), 100, 0);
+	set_sphere(scene->objects[1], ft_set_vector(400, 400, 0), 100, 1);
+	set_sphere(scene->objects[2], ft_set_vector(500, 140, 0), 100, 2);
+
+	set_material(scene->materials[0], ft_set_color(1, 1, 1, 1), 0.2);
+	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0.5);
+	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.9);
+
+	set_light(scene->lights[0], ft_set_vector(0, 240, -100), ft_set_color(1, 1, 1, 1));
+	set_light(scene->lights[1], ft_set_vector(3200, 3000, -1000), ft_set_color(0.6, 0.7, 1, 1));
+	set_light(scene->lights[2], ft_set_vector(600, 0, -100), ft_set_color(0.3, 0.5, 1, 1));
+
 }
 
-t_scene *create_sceen(int sceen_number)
+t_scene *create_scene(int sceen_number)
 {
 	t_scene *scene;
 
 	if (sceen_number == 1)
 	{
-		scene = new_scene(1, 1);
+		scene = new_scene(3, 3, 3);
 		create_sceen_one(scene);
 	}
-	scene->ray->dir.x = 0;
-	scene->ray->dir.y = 0;
-	scene->ray->dir.z = 1;
-
-	/* Start position of the ray, z coordinate */
-	scene->ray->start.z = 0;
 	return (scene);
 }
 
@@ -61,9 +72,6 @@ t_obj3d *new_object(t_obj_type object_type)
 	new_obj = malloc(sizeof(*(new_obj)));
 	if (new_obj == NULL)
 		rtv_error(malloc_error);
-	if (object_type == sphere)
-		new_obj->sphere = new_sphere();
-	else if (object_type == plane)
-		new_obj->plane = new_plane();
+	new_obj->obj_type = object_type;
 	return (new_obj);
 }

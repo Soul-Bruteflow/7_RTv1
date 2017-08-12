@@ -19,9 +19,7 @@ typedef enum	e_obj_type
 */
 typedef struct	s_shpere
 {
-	t_vec3d		pos;
 	float		radius;
-	int			material;
 }				t_sphere;
 
 /*
@@ -32,8 +30,6 @@ typedef struct	s_plane
 //	t_vec3d		n;
 //	float		d;
 	t_vec3d		rot;
-	t_vec3d		pos;
-	int			material;
 }				t_plane;
 
 /*
@@ -41,16 +37,20 @@ typedef struct	s_plane
 */
 typedef struct	s_obj3d
 {
-	t_sphere   	*sphere;
-	t_plane		*plane;
+	void		*type;
+	t_obj_type	obj_type;
 	t_bool		hit;
-	t_bool		(*intersect)(t_ray *, void *);
+	t_vec3d		pos;
+	Uint16		material;
+	t_bool		(*intersect)(t_ray *, struct s_obj3d *, float *);
 }				t_obj3d;
 
 /*
 ** Sphere intersection
 */
-t_bool			intersect_sphere(t_ray *r, t_sphere *s, float *t);
+//t_bool			intersect_sphere(t_ray *r, t_sphere *s, float *t);
+
+t_bool intersect_sphere(t_ray *r, t_sphere *s);
 
 t_bool intersect_plane_line(t_ray *r, t_plane *p, float *t);
 t_bool intersect_plane_ray(t_ray *r, t_plane *p);

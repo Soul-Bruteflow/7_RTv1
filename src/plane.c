@@ -31,18 +31,18 @@ t_plane *new_plane()
 //	return equal_abs(vec3d_dot(&p->n, &r->start), p->d, 1e-3f);
 //}
 
-t_bool intersect_plane_ray(t_ray *r, t_plane *p)
-{
-//	float t;
-//	t_bool success = intersect_plane_line(r, p, &t);
-////	if (dist)
-////		*dist = t;
-//	return (success && t >= 0.f);
-
-		float t0 = ((vec3d_dot(&p->rot, &p->pos) -
-				vec3d_dot(&p->rot, &r->start)) / vec3d_dot(&p->rot, &r->dir));
-		if (t0 < 0.0001)
-			return (false);
-		return (true);
-
-}
+//t_bool intersect_plane_ray(t_ray *r, t_plane *p)
+//{
+////	float t;
+////	t_bool success = intersect_plane_line(r, p, &t);
+//////	if (dist)
+//////		*dist = t;
+////	return (success && t >= 0.f);
+//
+//		float t0 = ((vec3d_dot(&p->rot, &p->pos) -
+//				vec3d_dot(&p->rot, &r->start)) / vec3d_dot(&p->rot, &r->dir));
+//		if (t0 < 0.0001)
+//			return (false);
+//		return (true);
+//
+//}

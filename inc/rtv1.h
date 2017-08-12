@@ -41,13 +41,31 @@ typedef struct		s_win
 */
 typedef struct		s_scene
 {
-	t_obj3d			**obj;
-	t_material		**material;
-	t_light			**light;
-	t_ray			*ray;
+	t_obj3d			**objects;
+	t_material		**materials;
+	t_light			**lights;
+	t_ray			ray;
 	Uint8 			objects_n;
+	Uint8 			materials_n;
 	Uint8 			lights_n;
 }					t_scene;
+
+/*
+** Support struct for calculation
+*/
+typedef	struct 		s_calc
+{
+	t_rgbap			color;
+	t_rgba			pixel_color;
+	int				level;
+	float			coef;
+	int				cur_obj;
+	t_vec3d			intersect_normal;
+	t_vec3d			new_start;
+	t_material		cur_mat;
+	float			reflect;
+	t_vec3d			tmp;
+}					t_calc;
 
 /*
 ** Main struct.
@@ -59,6 +77,7 @@ typedef struct		s_rtv
 	t_sdl			*sdl;
 	t_win			*win;
 	t_scene			*scene;
+	t_calc			*calc;
 }					t_rtv;
 
 /*
