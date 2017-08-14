@@ -54,6 +54,8 @@ void	set_object_material(t_obj3d *obj, Uint16 new_material);
 /*
 ** Sphere intersection
 */
+t_bool intersectRaySphere(t_ray *r, t_obj3d *object, float *t);
+
 //t_bool			intersect_sphere(t_ray *r, t_sphere *s, float *t);
 
 t_bool intersect_sphere(t_ray *r, t_sphere *s);

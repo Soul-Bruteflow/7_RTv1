@@ -32,6 +32,15 @@ void create_sceen_one(t_scene *scene)
 	scene->objects[0] = new_object(sphere);
 	scene->objects[1] = new_object(sphere);
 	scene->objects[2] = new_object(sphere);
+
+	scene->objects[0]->type = new_sphere();
+	scene->objects[1]->type = new_sphere();
+	scene->objects[2]->type = new_sphere();
+
+	scene->objects[0]->intersect = intersectRaySphere;
+	scene->objects[1]->intersect = intersectRaySphere;
+	scene->objects[2]->intersect = intersectRaySphere;
+
 	scene->materials[0] = new_material();
 	scene->materials[1] = new_material();
 	scene->materials[2] = new_material();

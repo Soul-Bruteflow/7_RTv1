@@ -110,7 +110,7 @@ void ray_cast(t_rtv *rtv)
 //			rtv->scene->obj[0]->hit = intersect_sphere(rtv->scene->ray, rtv->scene->obj[0]->sphere);
 //			rtv->scene->obj[1]->hit = intersect_plane_ray(rtv->scene->ray, rtv->scene->obj[1]->plane);
 //			if(rtv->scene->obj[0]->hit)
-			if(rtv->scene->obj[0]->hit)
+//			if(rtv->scene->obj[0]->hit)
 				draw_pixel(i, j, &tmp_color, rtv);
 //				printf("++");
 //			else

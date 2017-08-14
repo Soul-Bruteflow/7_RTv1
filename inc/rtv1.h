@@ -104,9 +104,9 @@ void ray_cast(t_rtv *rtv);
 /*
 ** Scene
 */
-t_scene *new_scene(Uint8 obj_number, Uint8 lights_number);
+t_scene *new_scene(Uint8 nbr_of_objs, Uint8 nbr_of_mats, Uint8 nbr_of_lights);
 void create_sceen_one(t_scene *scene);
-t_scene *create_sceen(int sceen_number);
+t_scene *create_scene(int sceen_number);
 t_obj3d *new_object(t_obj_type object_type);
 
 /*
