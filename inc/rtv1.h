@@ -120,7 +120,7 @@ void				keyboard_core(t_rtv *rtv);
 void	rtv_quit(t_rtv *rtv);
 void	screen_clear(t_rtv *rtv);
 void	screen_update(t_rtv *rtv);
-void	draw_pixel(Uint16 x, Uint16 y, t_rgba *color, t_rtv *rtv);
+void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer);
 
 /*
 ** Math

@@ -240,10 +240,8 @@ void calculate_light(t_rtv *rtv)
 		t2 = sqrtf(vec3d_dot(&dist, &dist));
 		if(t2 <= 0.0f)
 			continue;
-
 		light_ray.start = rtv->calc->new_start;
 		light_ray.dir = vec3d_scale((1/t2), &dist);
-
 		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
 		{
 			float lamb = lambert(&light_ray, &rtv->calc->intersect_normal, &rtv->calc->coef);
@@ -297,89 +295,6 @@ int main(int ac, char **av)
 {
 	t_rtv	*rtv;
 
-//	t_material materials[13];
-//	materials[0].diffuse.red = 1;
-//	materials[0].diffuse.green = 1;
-//	materials[0].diffuse.blue = 1;
-//	materials[0].diffuse.alpha = SDL_ALPHA_OPAQUE;
-//	materials[0].reflection = 0;
-//
-//	materials[1].diffuse.red = 0;
-//	materials[1].diffuse.green = 1;
-//	materials[1].diffuse.blue = 0;
-//	materials[1].diffuse.alpha = SDL_ALPHA_OPAQUE;
-//	materials[1].reflection = 0.5;
-//
-//	materials[2].diffuse.red = 0;
-//	materials[2].diffuse.green = 0;
-//	materials[2].diffuse.blue = 1;
-//	materials[2].diffuse.alpha = SDL_ALPHA_OPAQUE;
-//	materials[2].reflection = 0.9;
-//
-//	t_sphere *spheres = malloc(23 * sizeof(spheres));
-//
-////	spheres[0].pos.x = 0;
-////	spheres[0].pos.y = 0;
-////	spheres[0].pos.z = 0;
-//	spheres[0].radius = 100;
-////	spheres[0].material = 0;
-//
-////	spheres[1].pos.x = 400;
-////	spheres[1].pos.y = 400;
-////	spheres[1].pos.z = 0;
-//	spheres[1].radius = 100;
-////	spheres[1].material = 1;
-//
-////	spheres[2].pos.x = 500;
-////	spheres[2].pos.y = 140;
-////	spheres[2].pos.z = 0;
-//	spheres[2].radius = 100;
-////	spheres[2].material = 2;
-//
-//	t_light lights[13];
-//	lights[0].pos.x = 0;
-//	lights[0].pos.y = 240;
-//	lights[0].pos.z = -100;
-//	lights[0].intensity.red = 1;
-//	lights[0].intensity.green = 1;
-//	lights[0].intensity.blue = 1;
-//
-//	lights[1].pos.x = 3200;
-//	lights[1].pos.y = 3000;
-//	lights[1].pos.z = -1000;
-//	lights[1].intensity.red = 0.6;
-//	lights[1].intensity.green = 0.7;
-//	lights[1].intensity.blue = 1;
-//
-//	lights[2].pos.x = 600;
-//	lights[2].pos.y = 0;
-//	lights[2].pos.z = -100;
-//	lights[2].intensity.red = 0.3;
-//	lights[2].intensity.green = 0.5;
-//	lights[2].intensity.blue = 1;
-//
-//	t_obj3d	*objects = malloc(23 * sizeof(objects));
-//	objects[0].type = &spheres[0];
-//	objects[0].intersect = intersectRaySphere;
-//	objects[0].pos.x = 0;
-//	objects[0].pos.y = 0;
-//	objects[0].pos.z = 0;
-//	objects[0].material = 0;
-//
-//	objects[1].type = &spheres[1];
-//	objects[1].intersect = intersectRaySphere;
-//	objects[1].pos.x = 400;
-//	objects[1].pos.y = 400;
-//	objects[1].pos.z = 0;
-//	objects[1].material = 1;
-//
-//	objects[2].type = &spheres[2];
-//	objects[2].intersect = intersectRaySphere;
-//	objects[2].pos.x = 500;
-//	objects[2].pos.y = 140;
-//	objects[2].pos.z = 0;
-//	objects[2].material = 2;
-
 	rtv = rtv_init(av);
 	screen_create(rtv, 800, 600, "RTv1, 800x600\0");
 
@@ -394,7 +309,7 @@ int main(int ac, char **av)
 			set_raycast(rtv, x, y);
 			ray_trace(rtv);
 			rtv->calc->pixel_color = set_pixel_color(rtv);
-			draw_pixel(x, y, &rtv->calc->pixel_color, rtv);
+			ft_draw_pixel(x, y, &rtv->calc->pixel_color, rtv->win->draw_buf);
 		}
 	}
 	screen_update(rtv);
