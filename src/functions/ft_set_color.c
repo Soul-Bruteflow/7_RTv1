@@ -1,4 +1,4 @@
-#include "rtv1.h"
+#include "rtv.h"
 
 t_rgbap		ft_set_color(float r, float g, float b, float a)
 {

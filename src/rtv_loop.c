@@ -1,6 +1,6 @@
 # include <SDL2/SDL.h>
 # include "bool.h"
-# include "rtv1.h"
+# include "rtv.h"
 
 t_bool	running(SDL_Event *event, const Uint8 **key_state)
 {
@@ -20,7 +20,6 @@ void	rtv_loop(t_rtv *rtv)
 	while ((running(&rtv->sdl->event, &rtv->sdl->key_state)))
 	{
 //		raycast_core(wolf);
-
 //		update_time(wolf);
 		keyboard_core(rtv);
 	}

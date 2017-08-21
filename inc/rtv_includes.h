@@ -5,11 +5,11 @@
 # include "vectors.h"
 # include "objects.h"
 # include "raytrace.h"
-# include "rtv1.h"
-# include "rtv1_constants.h"
-# include "rtv1_defines.h"
-# include "rtv1_error.h"
-# include "rtv1_support.h"
+# include "rtv.h"
+# include "rtv_constants.h"
+# include "rtv_defines.h"
+# include "rtv_error.h"
+# include "rtv_support.h"
 # include "libft.h"
 # include <math.h>
 # include <SDL2/SDL.h>

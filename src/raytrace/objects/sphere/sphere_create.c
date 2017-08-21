@@ -1,5 +1,5 @@
 #include "objects.h"
-#include "rtv1.h"
+#include "rtv.h"
 
 t_sphere *new_sphere()
 {

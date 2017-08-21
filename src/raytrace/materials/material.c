@@ -1,4 +1,4 @@
-#include "rtv1.h"
+#include "rtv.h"
 
 t_material	*new_material()
 {

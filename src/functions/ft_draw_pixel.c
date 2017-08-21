@@ -1,5 +1,5 @@
-#include "rtv1.h"
-#include "rtv1_defines.h"
+#include "rtv.h"
+#include "rtv_defines.h"
 
 /*
 ** 0 - blue, 1 - green, 2 - red, 3 - alpha;
@@ -10,7 +10,7 @@ void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer)
 
 	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
 	{
-		offset = (Uint32)((WIDTH * 4 * y) + x * 4);
+		offset = (Uint32)((WIDTH * BITS * y) + x * BITS);
 		draw_buffer[offset + 0] = color->blue;
 		draw_buffer[offset + 1] = color->green;
 		draw_buffer[offset + 2] = color->red;

@@ -1,33 +1,21 @@
-#include "rtv1.h"
-
-/*
-** Release resources and quit.
-*/
-
-void	rtv_quit(t_rtv *rtv)
-{
-	SDL_DestroyTexture(rtv->win->screen);
-	SDL_DestroyRenderer(rtv->sdl->renderer);
-	SDL_DestroyWindow(rtv->sdl->window);
-	SDL_Quit();
-}
+#include "rtv.h"
 
 /*
 ** Clears screen.
 ** Sets render draw color to black and clears the window with it.
 */
 
-void	screen_clear(t_rtv *rtv)
+void	clear_window(t_rtv *rtv)
 {
 	SDL_SetRenderDrawColor(rtv->sdl->renderer, 0, 0, 0, 255);
 	SDL_RenderClear(rtv->sdl->renderer);
 }
 
 /*
-**  Shows what was drawn.
+** Renders to the window, everything that was drawn before in the back buffer.
 */
 
-void	screen_update(t_rtv *rtv)
+void	render_present(t_rtv *rtv)
 {
 //	wolf->sur_message = TTF_RenderText_Blended(wolf->font,
 //			wolf->fps, wolf->white);

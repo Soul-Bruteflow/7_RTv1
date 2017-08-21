@@ -2,7 +2,7 @@
 #define _RTV1_H
 
 # include <SDL2/SDL.h>
-# include "rtv1_error.h"
+# include "rtv_error.h"
 # include "objects.h"
 
 /*
@@ -92,14 +92,18 @@ void				print_error_and_exit(const char *error_text, Uint8 sdl);
 void	ft_noise(t_rtv *rtv);
 
 t_rtv				*rtv_init(char **av);
-void				screen_create(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
 void				rtv_loop(t_rtv *rtv);
+void				rtv_quit(t_rtv *rtv);
 
 
 /*
 ** Raycast
 */
-void ray_cast(t_rtv *rtv);
+void				raytrace(t_rtv *rtv);
+t_bool				normal_of_intersect(t_vec3d *normal, t_vec3d *new_start, t_obj3d **objects, int cur_obj);
+t_bool				object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_start);
+void				calculate_light(t_rtv *rtv);
+void				calculate_reflection(t_rtv *rtv);
 
 /*
 ** Scene
@@ -115,16 +119,16 @@ t_obj3d *new_object(t_obj_type object_type);
 void				keyboard_core(t_rtv *rtv);
 
 /*
-** Screen
+** Window
 */
-void	rtv_quit(t_rtv *rtv);
-void	screen_clear(t_rtv *rtv);
-void	screen_update(t_rtv *rtv);
+void	create_window(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
+void	clear_window(t_rtv *rtv);
+void	render_present(t_rtv *rtv);
 void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer);
 
 /*
 ** Math
 */
-t_bool equal_abs(float a, float b, float epsilon);
+t_bool	equal_abs(float a, float b, float epsilon);
 
 #endif
