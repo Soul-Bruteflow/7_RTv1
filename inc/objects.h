@@ -27,9 +27,10 @@ typedef struct	s_shpere
 */
 typedef struct	s_plane
 {
-//	t_vec3d		n;
-//	float		d;
-	t_vec3d		rot;
+	t_vec3d		normal;
+	t_vec3d		point;
+	float		distance;
+//	t_vec3d		rot;
 }				t_plane;
 
 /*
@@ -69,6 +70,6 @@ void			set_sphere_radius(t_obj3d *obj, float new_radius);
 
 
 t_plane *new_plane();
-t_bool intersect_plane(t_ray *r, t_plane *p);
+t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t);
 
 #endif

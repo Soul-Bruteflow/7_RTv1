@@ -9,7 +9,7 @@ t_bool	object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_
 	int		i;
 	t_vec3d	scaled;
 
-	t = 20000.0f;
+	t = 2000;
 	i = -1;
 	while(i++ < 2)
 	{
@@ -32,7 +32,7 @@ t_bool normal_of_intersect(t_vec3d *normal, t_vec3d *new_start, t_obj3d **object
 	*normal = vec3d_sub(new_start, &objects[cur_obj]->pos);
 	temp = vec3d_dot(normal, normal);
 	if(temp == 0)
-		return false;
+		return (false);
 	temp = 1.0f / sqrtf(temp);
 	*normal = vec3d_scale(temp, normal);
 	return (true);

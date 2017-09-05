@@ -37,9 +37,11 @@ static void calculate_ray(t_rtv *rtv)
 			break;
 		if (normal_of_intersect(&rtv->calc->intersect_normal, &rtv->calc->new_start, rtv->scene->objects, rtv->calc->cur_obj) == false)
 			break;
+		// error
 		rtv->calc->cur_mat = *rtv->scene->materials[rtv->scene->objects[rtv->calc->cur_obj]->material];
 		calculate_light(rtv);
-		calculate_reflection(rtv);
+//		if (rtv->scene->materials[rtv->calc->cur_obj]->reflection > 0)
+			calculate_reflection(rtv);
 	}
 }
 
