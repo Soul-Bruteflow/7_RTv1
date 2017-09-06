@@ -63,6 +63,7 @@ typedef	struct 		s_calc
 	t_vec3d			intersect_normal;
 	t_vec3d			new_start;
 	t_material		cur_mat;
+	int				material_n;
 	float			reflect;
 	t_vec3d			tmp;
 }					t_calc;

@@ -1,55 +1,50 @@
 #include "objects.h"
 #include "rtv.h"
 
-t_plane *new_plane()
-{
-	t_plane *plane;
-
-	plane = malloc(sizeof(*(plane)));
-	if (plane == NULL)
-		rtv_error(malloc_error);
-	return (plane);
-}
-
 t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t)
 {
 	t_plane *p = object->type;
 
-//	t_vec3d u = vec3d_sub(&r->start, &r->dir);
-//	t_vec3d w;
-//	float dot = vec3d_dot(&p->normal, &u);
-//	float fac;
-//
-//	if (fabs(dot) > 1e6f)
-//	{
-//		w = vec3d_sub(&r->start, &p->point);
-//		fac = -(vec3d_dot(&p->normal, &w));
-//		u = vec3d_scale(fac, &u);
-//		t_vec3d tmp = vec3d_add(&r->start, &u);
-//		fac = ft_vec3d_magnitude(tmp);
-//		*t = fac;
-//		return (true);
-//	}
-//	return (false);
-	//-----------------------------
-	float t0 = 0;
-	float s;
-	float denom;
-
-	denom = vec3d_dot(&r->dir, &p->normal);
-	if (fabs(denom) > 1e-6f)
+////----------------------------------------
+	float denom = vec3d_dot(&r->dir, &p->normal);
+	if (fabs(denom) > 0.0001f) // your favorite epsilon
 	{
-		s = -(vec3d_dot(&r->start, &p->normal) + p->distance);
-		t0 = s / denom;
+		t_vec3d tmp = vec3d_sub(&p->point, &r->start);
+		float t0 = vec3d_dot(&tmp, &p->normal) / denom;
 		if (t0 >= 0)
 		{
 			*t = t0;
-			return (true);
-		}
+			return true;
+		} // you might want to allow an epsilon here too
 	}
-//	*t = t0;
-	return (false);
-	//-------------------------
+	return false;
+////----------------------------------------
+
+
+//	result.Dist = t;
+//	return result;
+
+////	//-----------------------------
+//	float t0 = 0;
+//	float s;
+//	float denom;
+//
+//	denom = vec3d_dot(&r->dir, &p->normal);
+//	if (fabs(denom) > 1e-6f)
+//	{
+//		s = -(vec3d_dot(&r->start, &p->normal) + p->distance);
+//		t0 = s / denom;
+//		if (t0 >= 1e-6f)
+////		if (denom != 0)
+//		{
+//			*t = t0;
+////			if (fabs(*t) < 1e6f)
+//				return (true);
+//		}
+//	}
+////	*t = t0;
+//	return (false);
+//	//-------------------------
 
 //	t_vec3d v0;
 //

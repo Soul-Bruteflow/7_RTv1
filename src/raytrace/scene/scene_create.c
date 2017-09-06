@@ -51,16 +51,17 @@ void create_sceen_one(t_scene *scene)
 	t_plane *tmp_plane = scene->objects[0]->type;
 
 
-	tmp_plane->normal.x = 2;
-	tmp_plane->normal.y = 3;
-	tmp_plane->normal.z = 200;
-
+//	tmp_plane->normal.x = 2;
+//	tmp_plane->normal.y = 3;
+//	tmp_plane->normal.z = 200;
+//
 	tmp_plane->point.x = 500;
 	tmp_plane->point.y = 500;
-	tmp_plane->point.z = 0;
+	tmp_plane->point.z = 5;
+//
+//	tmp_plane->distance = -90000;
 
-	tmp_plane->distance = -90000;
-
+	set_plane(scene->objects[0], ft_set_vector(2, 3, 200), -90000, 0);
 //	set_sphere(scene->objects[0], ft_set_vector(0, 0, 0), 100, 0);
 	set_sphere(scene->objects[1], ft_set_vector(400, 400, 0), 100, 1);
 	set_sphere(scene->objects[2], ft_set_vector(500, 140, 0), 100, 2);

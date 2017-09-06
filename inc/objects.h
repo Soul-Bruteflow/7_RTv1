@@ -52,6 +52,16 @@ typedef struct	s_obj3d
 void	set_object_position(t_obj3d *obj, t_vec3d new_position);
 void	set_object_material(t_obj3d *obj, Uint16 new_material);
 
+
+/*
+** Plane
+*/
+t_plane *new_plane();
+void	set_plane_distance(t_obj3d *obj, float new_distance);
+void	set_plane_normal(t_obj3d *obj, t_vec3d new_normal);
+void	set_plane(t_obj3d *obj, t_vec3d new_normal, float new_distance, Uint16 new_material);
+t_bool 	intersect_plane(t_ray *r, t_obj3d *object, float *t);
+
 /*
 ** Sphere intersection
 */
@@ -69,7 +79,6 @@ void			set_sphere(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 n
 void			set_sphere_radius(t_obj3d *obj, float new_radius);
 
 
-t_plane *new_plane();
-t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t);
+
 
 #endif

@@ -8,7 +8,7 @@ void	keyboard_core(t_rtv *rtv)
 	{
 		t_plane *p = rtv->scene->objects[0]->type;
 
-		p->distance += 1000;
+		p->normal.y += 50;
 		printf("distance - %f\n", p->distance);
 //		rtv->scene->obj[0]->sphere->pos.x -= 10.0;
 		clear_window(rtv);
@@ -18,7 +18,7 @@ void	keyboard_core(t_rtv *rtv)
 	if (SDL_KEYDOWN && rtv->sdl->key_state[SDL_SCANCODE_DOWN])
 	{
 		t_plane *p = rtv->scene->objects[0]->type;
-		p->distance -= 1000;
+		p->normal.y -= 50;
 		printf("distance - %f\n", p->distance);
 //		rtv->scene->obj[0]->sphere->pos.x += 10.0;
 		clear_window(rtv);
