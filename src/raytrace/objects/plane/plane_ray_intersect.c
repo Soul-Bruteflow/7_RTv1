@@ -11,9 +11,10 @@ t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t)
 	{
 		t_vec3d tmp = vec3d_sub(&p->point, &r->start);
 		float t0 = vec3d_dot(&tmp, &p->normal) / denom;
-		if (t0 >= 0)
+		if (t0 > 1e-1f)
 		{
 			*t = t0;
+//			printf("t - %f\n", *t);
 			return true;
 		} // you might want to allow an epsilon here too
 	}

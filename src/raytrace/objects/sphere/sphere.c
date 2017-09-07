@@ -135,7 +135,8 @@ t_bool intersectRaySphere(t_ray *r, t_obj3d *object, float *t)
 			t0 = t1;
 
 		/* Verify t1 larger than 0 and less than the original t */
-		if((t0 > 0.001f) && (t0 < *t)){
+		if((t0 > 0.001f) && (t0 < *t))
+		{
 			*t = t0;
 			retval = true;
 		}else

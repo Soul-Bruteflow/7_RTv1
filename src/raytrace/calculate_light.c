@@ -59,10 +59,12 @@ void calculate_light(t_rtv *rtv)
 	{
 		cur_light = *rtv->scene->lights[j];
 		dist = vec3d_sub(&cur_light.pos, &rtv->calc->new_start);
-		if(vec3d_dot(&rtv->calc->intersect_normal, &dist) <= 0.0f)
+		// <= 0.0f
+		if(vec3d_dot(&rtv->calc->intersect_normal, &dist) < 0.0001f)
 			continue;
 		t2 = sqrtf(vec3d_dot(&dist, &dist));
-		if(t2 <= 0.0f)
+		// <= 0.0f
+		if(t2 < 0.0001f)
 			continue;
 		light_ray.start = rtv->calc->new_start;
 		light_ray.dir = vec3d_scale((1/t2), &dist);

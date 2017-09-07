@@ -8,7 +8,7 @@ void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer)
 {
 	Uint32	offset;
 
-	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
+	if (x >= 0 && x <= WIDTH - 1 && y >= 0 && y <= HEIGHT - 1)
 	{
 		offset = (Uint32)((WIDTH * BITS * y) + x * BITS);
 		draw_buffer[offset + 0] = color->blue;
