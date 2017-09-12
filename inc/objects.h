@@ -23,13 +23,29 @@ typedef struct	s_shpere
 }				t_sphere;
 
 /*
-** Plane primitive definition
+** PLANE primitive definition
 */
 typedef struct	s_plane
 {
 	t_vec3d		normal;
 	t_vec3d		point;
 }				t_plane;
+
+/*
+** CYLINDER primitive definition
+*/
+typedef struct	s_cylinder
+{
+	float		radius;
+}				t_cylinder;
+
+/*
+** CONE primitive definition
+*/
+typedef struct	s_cone
+{
+	float		alpha;
+}				t_cone;
 
 /*
 ** Object
@@ -49,8 +65,6 @@ typedef struct	s_obj3d
 */
 void			set_object_position(t_obj3d *obj, t_vec3d new_position);
 void			set_object_material(t_obj3d *obj, Uint16 new_material);
-
-
 /*
 ** Plane
 */
@@ -58,7 +72,6 @@ t_plane 		*new_plane();
 void			set_plane_normal(t_obj3d *obj, t_vec3d new_normal);
 void			set_plane(t_obj3d *obj, t_vec3d new_normal, t_vec3d point, Uint16 new_material);
 t_bool 			intersect_plane_ray(t_ray *r, t_obj3d *object, float *t);
-
 /*
 ** Sphere
 */
@@ -66,22 +79,13 @@ t_sphere 		*new_sphere();
 void			set_sphere_radius(t_obj3d *obj, float new_radius);
 void			set_sphere(t_obj3d *obj, t_vec3d pos, float rad, Uint16 mat);
 t_bool 			intersect_sphere_ray(t_ray *r, t_obj3d *object, float *t);
-
-
 /*
-** Sphere intersection
+** Cylinder
 */
-t_bool intersectRaySphere(t_ray *r, t_obj3d *object, float *t);
-
-//t_bool			intersect_sphere(t_ray *r, t_sphere *s, float *t);
-
-t_bool intersect_sphere(t_ray *r, t_sphere *s);
-
-
-t_sphere		*new_sphere();
-void			set_sphere(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material);
-void			set_sphere_radius(t_obj3d *obj, float new_radius);
-
+t_cylinder		*new_cylinder();
+void			set_cylinder_radius(t_obj3d *obj, float new_radius);
+void			set_cylinder(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material);
+t_bool 			intersect_cylinder_ray(t_ray *r, t_obj3d *object, float *t);
 
 
 

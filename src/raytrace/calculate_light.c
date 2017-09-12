@@ -67,10 +67,10 @@ void calculate_light(t_rtv *rtv)
 			continue;
 		light_ray.start = rtv->calc->new_start;
 		light_ray.dir = vec3d_scale(1/t2, &dist);
-		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
-		{
+//		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
+//		{
 			float lamb = lambert(&light_ray, &rtv->calc->intersect_normal, &rtv->calc->coef);
 			lamb_dif(lamb, &rtv->calc->color, cur_light, rtv->calc->cur_mat);
-		}
+//		}
 	}
 }

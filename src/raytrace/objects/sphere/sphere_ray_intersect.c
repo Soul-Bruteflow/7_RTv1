@@ -3,7 +3,7 @@
 /*
 ** Solving the discriminant
 */
-float	calculate_discriminant(t_ray *r, t_obj3d *object, float *b)
+static float	calculate_discriminant(t_ray *r, t_obj3d *object, float *b)
 {
 	float a;
 	float c;
