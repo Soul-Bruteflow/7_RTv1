@@ -61,14 +61,17 @@ void create_sceen_one(t_scene *scene)
 //
 //	tmp_plane->distance = -90000;
 
-	set_plane(scene->objects[0], ft_set_vector(2, 90, 200), -90000, 0);
+	set_plane(scene->objects[0], ft_set_vector(2, 90, 200), -900, 0);
+	scene->objects[0]->pos.x = 2;
+	scene->objects[0]->pos.y = 90;
+	scene->objects[0]->pos.z = 200;
 //	set_sphere(scene->objects[0], ft_set_vector(0, 0, 0), 100, 0);
 	set_sphere(scene->objects[1], ft_set_vector(400, 400, 0), 100, 1);
 	set_sphere(scene->objects[2], ft_set_vector(500, 140, 0), 100, 2);
 
-	set_material(scene->materials[0], ft_set_color(0, 1, 1, 1), 0);
-	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0);
-	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.1);
+	set_material(scene->materials[0], ft_set_color(0, 1, 1, 1), 0.01);
+	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0.01);
+	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.01);
 
 	set_light(scene->lights[0], ft_set_vector(0, 1240, -100), ft_set_color(1, 1, 1, 1));
 	set_light(scene->lights[1], ft_set_vector(400, 300, -1000), ft_set_color(0.6, 0.7, 1, 1));

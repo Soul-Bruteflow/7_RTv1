@@ -5,13 +5,40 @@ t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t)
 {
 	t_plane *p = object->type;
 
+//	// First, check if we intersect
+//	float dDotN = vec3d_dot(&r->dir, &p->normal);
+//
+//	if (dDotN <= 1e-1f)
+//	{
+//		// We just assume the ray is not embedded in the plane
+//		return false;
+//	}
+//
+//	// Find point of intersection
+//	t_vec3d tmp = vec3d_sub(&p->point, &r->start);
+//	float t0 = vec3d_dot(&tmp, &p->normal) / dDotN;
+//
+//	if (t0 <= 1e-1f || t0 >= 900000.0f)
+//	{
+//		// Outside relevant range
+//		return false;
+//	}
+//
+//	*t = t0;
+//	return true;
+
 ////----------------------------------------
 	float denom = vec3d_dot(&r->dir, &p->normal);
-	if (fabs(denom) > 0.0001f) // your favorite epsilon
+	if (denom == 0)
+		return false;
+	if (fabs(denom) >= 1e-6f) // your favorite epsilon
 	{
 		t_vec3d tmp = vec3d_sub(&p->point, &r->start);
-		float t0 = vec3d_dot(&tmp, &p->normal) / denom;
-		if (t0 > 1e-1f)
+
+//		printf("r %f\n", r->start);
+
+		float t0 = (vec3d_dot(&tmp, &p->normal)) / denom;
+		if (t0 >= 1e-6f)
 		{
 			*t = t0;
 //			printf("t - %f\n", *t);
@@ -92,25 +119,6 @@ t_bool intersect_plane(t_ray *r, t_obj3d *object, float *t)
 //	return false;
 }
 
-//t_bool intersect_plane_line(t_ray *r, t_plane *p, float *t)
-//{
-//	float denom = vec3d_dot(&p->n, &r->dir);
-//	if (fabs(denom) > 1e-4f)
-//	{
-//		// Compute the distance from the line starting point to the point of intersection.
-//		*t = (p->d - vec3d_dot(&p->n, &r->start)) / denom;
-//		return true;
-//	}
-//
-//	if (denom != 0.f)
-//	{
-//		*t = (p->d - vec3d_dot(&p->n, &r->start)) / denom;
-//		if (fabs(*t) < 1e4f)
-//			return true;
-//	}
-//	*t = 0.f;
-//	return equal_abs(vec3d_dot(&p->n, &r->start), p->d, 1e-3f);
-//}
 
 //t_bool intersect_plane_ray(t_ray *r, t_plane *p)
 //{

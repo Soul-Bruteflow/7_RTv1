@@ -15,14 +15,14 @@ static t_rgba set_pixel_color(t_rtv *rtv)
 
 static void set_raytrace(t_rtv *rtv, Uint16 x, Uint16 y)
 {
-	rtv->calc->level = -1;
+	rtv->calc->level = 1;
 	rtv->calc->coef = 1.0;
 	rtv->calc->color.red = 0;
 	rtv->calc->color.green = 0;
 	rtv->calc->color.blue = 0;
 	rtv->scene->ray.start.x = x;
 	rtv->scene->ray.start.y = y;
-	rtv->scene->ray.start.z = -2000;
+	rtv->scene->ray.start.z = -200;
 	rtv->scene->ray.dir.x = 0;
 	rtv->scene->ray.dir.y = 0;
 	rtv->scene->ray.dir.z = 1;
@@ -30,7 +30,7 @@ static void set_raytrace(t_rtv *rtv, Uint16 x, Uint16 y)
 
 static void calculate_ray(t_rtv *rtv)
 {
-	while((rtv->calc->coef > 0.0f) && (rtv->calc->level++ < 15))
+	while((rtv->calc->coef > 0.01f) && (rtv->calc->level++ < 15))
 	{
 		rtv->calc->cur_obj = -1;
 		if (object_intersect(rtv->scene->objects, &rtv->scene->ray, &rtv->calc->cur_obj, &rtv->calc->new_start) == false)
@@ -39,7 +39,7 @@ static void calculate_ray(t_rtv *rtv)
 			break;
 		// error
 		rtv->calc->material_n = rtv->scene->objects[rtv->calc->cur_obj]->material;
-		if (rtv->calc->material_n <= 2 && rtv->calc->material_n >= 0)
+//		if (rtv->calc->material_n <= 2 && rtv->calc->material_n >= 0)
 			rtv->calc->cur_mat = *rtv->scene->materials[rtv->scene->objects[rtv->calc->cur_obj]->material];
 		calculate_light(rtv);
 //		if (rtv->scene->materials[rtv->calc->cur_obj]->reflection > 0)

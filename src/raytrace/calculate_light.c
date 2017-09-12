@@ -17,6 +17,8 @@ t_bool calculate_shadows(t_obj3d **objects, t_ray *light_ray, float *t2)
 
 float lambert(t_ray *light_ray, t_vec3d *normal, float *coef)
 {
+//	printf("coef %f\n", *coef);
+
 	return (vec3d_dot(&light_ray->dir, normal) * *coef);
 }
 
@@ -28,6 +30,16 @@ void lamb_dif(float lamb, t_rgbap *color, t_light cur_light, t_material cur_mat)
 	color->red += lamb * cur_light.intensity.red * cur_mat.diffuse.red;
 	color->green += lamb * cur_light.intensity.green * cur_mat.diffuse.green;
 	color->blue += lamb * cur_light.intensity.blue * cur_mat.diffuse.blue;
+
+//	printf("red %f, ", color->red);
+//	printf("green %f, ", color->green);
+
+//	printf("lamb %f\n", lamb);
+//	printf("blue %f\n", color->blue);
+
+//	printf("alpha %f, \n", color->alpha);
+
+//	printf("lambert %f, \n", lamb);
 }
 
 /*
@@ -58,20 +70,22 @@ void calculate_light(t_rtv *rtv)
 	while(j++ < 2)
 	{
 		cur_light = *rtv->scene->lights[j];
+
 		dist = vec3d_sub(&cur_light.pos, &rtv->calc->new_start);
 		// <= 0.0f
-		if(vec3d_dot(&rtv->calc->intersect_normal, &dist) < 0.0001f)
+//		printf("dist %f\n", dist);
+		if(vec3d_dot(&rtv->calc->intersect_normal, &dist) < 1e-1f)
 			continue;
 		t2 = sqrtf(vec3d_dot(&dist, &dist));
 		// <= 0.0f
-		if(t2 < 0.0001f)
+		if(t2 < 1e-1f)
 			continue;
 		light_ray.start = rtv->calc->new_start;
-		light_ray.dir = vec3d_scale((1/t2), &dist);
-		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
-		{
+		light_ray.dir = vec3d_scale(1/t2, &dist);
+//		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
+//		{
 			float lamb = lambert(&light_ray, &rtv->calc->intersect_normal, &rtv->calc->coef);
 			lamb_dif(lamb, &rtv->calc->color, cur_light, rtv->calc->cur_mat);
-		}
+//		}
 	}
 }
