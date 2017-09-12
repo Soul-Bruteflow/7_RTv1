@@ -25,10 +25,3 @@ void	set_sphere(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new
 	set_object_material(obj, new_material);
 	set_sphere_radius(obj, new_radius);
 }
-
-//void	set_sphere_color(t_sphere *sphere, t_vec3d new_position)
-//{
-//	sphere->pos.x = new_position.x;
-//	sphere->pos.y = new_position.y;
-//	sphere->pos.z = new_position.z;
-//}

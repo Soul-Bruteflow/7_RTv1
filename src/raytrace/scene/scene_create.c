@@ -37,9 +37,9 @@ void create_sceen_one(t_scene *scene)
 	scene->objects[1]->type = new_sphere();
 	scene->objects[2]->type = new_sphere();
 
-	scene->objects[0]->intersect = intersect_plane;
-	scene->objects[1]->intersect = intersectRaySphere;
-	scene->objects[2]->intersect = intersectRaySphere;
+	scene->objects[0]->intersect = intersect_plane_ray;
+	scene->objects[1]->intersect = intersect_sphere_ray;
+	scene->objects[2]->intersect = intersect_sphere_ray;
 
 	scene->materials[0] = new_material();
 	scene->materials[1] = new_material();
@@ -48,24 +48,7 @@ void create_sceen_one(t_scene *scene)
 	scene->lights[1] = new_light();
 	scene->lights[2] = new_light();
 
-	t_plane *tmp_plane = scene->objects[0]->type;
-
-
-//	tmp_plane->normal.x = 2;
-//	tmp_plane->normal.y = 3;
-//	tmp_plane->normal.z = 200;
-//
-	tmp_plane->point.x = 500;
-	tmp_plane->point.y = 500;
-	tmp_plane->point.z = 200;
-//
-//	tmp_plane->distance = -90000;
-
-	set_plane(scene->objects[0], ft_set_vector(2, 90, 200), -900, 0);
-	scene->objects[0]->pos.x = 2;
-	scene->objects[0]->pos.y = 90;
-	scene->objects[0]->pos.z = 200;
-//	set_sphere(scene->objects[0], ft_set_vector(0, 0, 0), 100, 0);
+	set_plane(scene->objects[0], ft_set_vector(2, 90, 200), ft_set_vector(500, 500, 200), 0);
 	set_sphere(scene->objects[1], ft_set_vector(400, 400, 0), 100, 1);
 	set_sphere(scene->objects[2], ft_set_vector(500, 140, 0), 100, 2);
 
