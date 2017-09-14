@@ -41,10 +41,20 @@ typedef struct	s_cylinder
 
 /*
 ** CONE primitive definition
+** param[0] - radius;
+** param[1] - height;
 */
 typedef struct	s_cone
 {
-	float		alpha;
+	float		angle;
+	t_vec3d		tip;
+	t_vec3d		axis;
+
+//	float		cosa;		// half cone angle
+//	float		h;			// height
+//	t_vec3d		c;			// tip position
+//	t_vec3d		v;			// axis
+//	float		params[2];
 }				t_cone;
 
 /*
@@ -53,6 +63,8 @@ typedef struct	s_cone
 typedef struct	s_obj3d
 {
 	void		*type;
+	t_vec3d		cone_norm;
+	t_vec3d		tip;
 	t_obj_type	obj_type;
 	t_bool		hit;
 	t_vec3d		pos;
@@ -86,7 +98,13 @@ t_cylinder		*new_cylinder();
 void			set_cylinder_radius(t_obj3d *obj, float new_radius);
 void			set_cylinder(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material);
 t_bool 			intersect_cylinder_ray(t_ray *r, t_obj3d *object, float *t);
-
-
+/*
+** Cone
+*/
+t_cone 			*new_cone();
+void			set_cone_radius(t_obj3d *obj, float new_radius);
+void			set_cone_height(t_obj3d *obj, float new_height);
+void			set_cone(t_obj3d *obj, t_vec3d new_position, float params[], Uint16 new_material);
+t_bool 			intersect_cone_ray(t_ray *r, t_obj3d *object, float *t);
 
 #endif

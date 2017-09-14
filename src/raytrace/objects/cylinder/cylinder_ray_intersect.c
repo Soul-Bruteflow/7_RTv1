@@ -6,7 +6,10 @@
 static float	calculate_discriminant(t_ray *r, t_obj3d *o, float *b, float *a)
 {
 	float	c;
+
 	t_cylinder *cy;
+
+	struct s_cylinder cr;
 
 	cy = o->type;
 	*a = powf(r->dir.x, 2) + powf(r->dir.z, 2);

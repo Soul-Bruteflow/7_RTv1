@@ -11,7 +11,7 @@ t_bool	object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_
 
 	t = 2000;
 	i = -1;
-	while(i++ < 2)
+	while(i++ < 3)
 	{
 		if (objects[i]->intersect(r, objects[i], &t))
 			*cur_obj = i;

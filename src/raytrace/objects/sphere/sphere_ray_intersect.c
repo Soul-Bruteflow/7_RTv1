@@ -3,6 +3,8 @@
 /*
 ** Solving the discriminant
 */
+#include <stdbool.h>
+
 static float	calculate_discriminant(t_ray *r, t_obj3d *object, float *b)
 {
 	float a;

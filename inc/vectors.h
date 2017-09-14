@@ -43,4 +43,6 @@ t_vec3d	ft_vec3d_norm(t_vec3d v);
 ** Scale vector by a factor s
 */
 t_vec3d	ft_vec3d_scale(t_vec3d v, float s);
+
+t_vec3d	ft_vec3d_devide(t_vec3d v, float s);
 #endif
