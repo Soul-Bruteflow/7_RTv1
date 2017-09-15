@@ -37,7 +37,7 @@ void lamb_dif(float lamb, t_rgbap *color, t_light cur_light, t_material cur_mat)
 void calculate_reflection(t_rtv *rtv)
 {
 	rtv->calc->coef *= rtv->calc->cur_mat.reflection;
-	rtv->scene->ray.start = rtv->calc->new_start;
+//	rtv->scene->ray.start = rtv->calc->new_start;
 	rtv->calc->reflect = 2.0f * vec3d_dot(&rtv->scene->ray.dir, &rtv->calc->intersect_normal);
 	rtv->calc->tmp = vec3d_scale(rtv->calc->reflect, &rtv->calc->intersect_normal);
 	rtv->scene->ray.dir = vec3d_sub(&rtv->scene->ray.dir, &rtv->calc->tmp);

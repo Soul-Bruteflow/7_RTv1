@@ -2,7 +2,6 @@
 #include "rtv_error.h"
 #include "rtv_support.h"
 #include "rtv_defines.h"
-#include "rtv_constants.h"
 
 /*
 ** type *pointer = malloc(num_elems * sizeof(*pointer));

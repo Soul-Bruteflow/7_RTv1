@@ -13,6 +13,7 @@
 */
 #define ONE_STR 1
 
+#define PI 3.14159265359f
 
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 

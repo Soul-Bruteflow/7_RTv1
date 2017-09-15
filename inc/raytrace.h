@@ -27,6 +27,30 @@ typedef struct	s_rgbap
 }				t_rgbap;
 
 /*
+** Perspective cmera definition
+*/
+typedef struct	s_cam
+{
+	t_vec3d		o;
+	t_vec3d		d;
+	t_vec3d		up;
+	float		fov;
+	t_vec3d		eye;
+	t_vec3d		vpRight;
+	t_vec3d		vpUp;
+	float		pixelWidth;
+	float		pixelHeight;
+	float		halfWidth;
+	float		halfHeight;
+
+//	t_vec3d		forward;
+//	t_vec3d		up;
+//	t_vec3d		right;
+//	float		h;
+//	float 		w;
+}				t_cam;
+
+/*
 ** Ray definition
 */
 typedef struct	s_ray
@@ -58,6 +82,13 @@ typedef struct	s_light
 */
 t_rgbap			ft_set_color(float r, float g, float b, float a);
 t_vec3d			ft_set_vector(float x, float y, float z);
+
+/*
+** Camera
+*/
+t_cam 			*create_perspective_cam(t_vec3d origin, t_vec3d target,
+										t_vec3d upguide, float fov_asp[]);
+void 			make_ray(t_cam *cam, t_vec2d point, t_ray *r);
 
 /*
 ** Material

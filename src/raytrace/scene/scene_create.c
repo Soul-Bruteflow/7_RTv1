@@ -1,5 +1,6 @@
 #include "rtv.h"
 #include "objects.h"
+#include "rtv_defines.h"
 
 /*
 ** Allocates memory for new scene. And all objects,
@@ -79,7 +80,7 @@ void create_sceen_one(t_scene *scene)
 	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0.01);
 	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.01);
 
-	set_light(scene->lights[0], ft_set_vector(0, 1240, -100), ft_set_color(1, 1, 1, 1));
+	set_light(scene->lights[0], ft_set_vector(0, 0, -2000), ft_set_color(1, 1, 1, 1));
 	set_light(scene->lights[1], ft_set_vector(400, 300, -1000), ft_set_color(0.6, 0.7, 1, 1));
 	set_light(scene->lights[2], ft_set_vector(1600, 0, -100), ft_set_color(0.3, 0.5, 1, 1));
 
@@ -92,6 +93,35 @@ t_scene *create_scene(int sceen_number)
 	if (sceen_number == 1)
 	{
 		scene = new_scene(4, 3, 3);
+
+		scene->cam.o.x = 0;
+		scene->cam.o.y = 0;
+		scene->cam.o.z = -1900;
+		scene->cam.d.x = 0;
+		scene->cam.d.y = 0;
+		scene->cam.d.z = 1;
+		scene->cam.up.x = 0;
+		scene->cam.up.y = 1;
+		scene->cam.up.z = 0;
+		scene->cam.fov = 65;
+		scene->cam.eye = ft_vec3d_unit(vec3d_sub(&scene->cam.d, &scene->cam.o));
+		scene->cam.vpRight = ft_vec3d_unit(vec3d_cross(&scene->cam.eye, &scene->cam.up));
+		scene->cam.vpUp = ft_vec3d_unit(vec3d_cross(&scene->cam.vpRight, &scene->cam.eye));
+
+		float fovRadians = PI * (scene->cam.fov / 2) / 180;
+		float heightWidthRatio = 600.0f / 800.0f;
+		scene->cam.halfWidth = tanf(fovRadians);
+		scene->cam.halfHeight = heightWidthRatio * scene->cam.halfWidth;
+		float camerawidth = scene->cam.halfWidth * 2;
+		float cameraheight = scene->cam.halfHeight * 2;
+		scene->cam.pixelWidth = camerawidth / (800.0f - 1);
+		scene->cam.pixelHeight = cameraheight / (600.0f - 1);
+
+		scene->ray.start = scene->cam.o;
+
+//		scene->cam = create_perspective_cam(ft_set_vector(0, 0, -200),
+//				ft_set_vector(0, 0, 1), ft_set_vector(0, 1, 0), w_h);
+
 		create_sceen_one(scene);
 	}
 	return (scene);

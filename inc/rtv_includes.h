@@ -6,7 +6,6 @@
 # include "objects.h"
 # include "raytrace.h"
 # include "rtv.h"
-# include "rtv_constants.h"
 # include "rtv_defines.h"
 # include "rtv_error.h"
 # include "rtv_support.h"

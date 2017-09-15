@@ -20,12 +20,36 @@ static void set_raytrace(t_rtv *rtv, Uint16 x, Uint16 y)
 	rtv->calc->color.red = 0;
 	rtv->calc->color.green = 0;
 	rtv->calc->color.blue = 0;
-	rtv->scene->ray.start.x = x;
-	rtv->scene->ray.start.y = y;
-	rtv->scene->ray.start.z = -200;
-	rtv->scene->ray.dir.x = 0;
-	rtv->scene->ray.dir.y = 0;
-	rtv->scene->ray.dir.z = 1;
+
+
+
+//	t_vec2d x_y;
+//	x_y.v = (2.0f*x) / 800 - 1.0f;
+//	x_y.u = (-2.0f*y) / 600 + 1.0f;
+//	make_ray(rtv->scene->cam, x_y, &rtv->scene->ray);
+
+	t_vec3d xcomp = ft_vec3d_scale(rtv->scene->cam.vpRight, ((x * rtv->scene->cam.pixelWidth) - rtv->scene->cam.halfWidth));
+	t_vec3d ycomp = ft_vec3d_scale(rtv->scene->cam.vpUp, ((y * rtv->scene->cam.pixelHeight) - rtv->scene->cam.halfHeight));
+////
+	rtv->scene->ray.dir = ft_vec3d_unit(ft_vec3d_add3(rtv->scene->cam.eye, xcomp, ycomp));
+//
+
+//	float fovx = PI /4;
+//	float fovy = 600.0f/800.0f * fovx;
+//
+//	rtv->scene->ray.start.x = x;
+//	rtv->scene->ray.start.y = y;
+//	rtv->scene->ray.start.z = -200;
+//	rtv->scene->ray.dir.x = 0;
+//	rtv->scene->ray.dir.y = 0;
+//	rtv->scene->ray.dir.z = 1;
+
+//	printf("start.x - %f\n", rtv->scene->ray.start.x);
+//	printf("start.y - %f\n", rtv->scene->ray.start.y);
+//	printf("start.z - %f\n", rtv->scene->ray.start.z);
+//	printf("dir.x - %f\n", rtv->scene->ray.dir.x);
+//	printf("dir.y - %f\n", rtv->scene->ray.dir.y);
+//	printf("dir.z - %f\n", rtv->scene->ray.dir.z);
 }
 
 static void calculate_ray(t_rtv *rtv)

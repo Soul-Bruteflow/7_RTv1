@@ -45,6 +45,8 @@ typedef struct		s_scene
 	t_material		**materials;
 	t_light			**lights;
 	t_ray			ray;
+	t_cam			cam;
+	t_vec2d			point;
 	Uint8 			objects_n;
 	Uint8 			materials_n;
 	Uint8 			lights_n;
