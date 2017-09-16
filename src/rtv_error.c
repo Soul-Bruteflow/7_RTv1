@@ -41,6 +41,14 @@ void	rtv_error(t_error error_code)
 		print_error_and_exit("SDL error: window. ", 1);
 	else if (error_code == sdl_renderer_error)
 		print_error_and_exit("SDL error: renderer. ", 1);
+	else if (error_code == file_close_error)
+		print_error_and_exit("File close error: file. ", 1);
+	else if (error_code == line_error)
+		print_error_and_exit("Line error: file. ", 1);
+	else if (error_code == file_open_error)
+		print_error_and_exit("File open error: file. ", 1);
+	else if (error_code == gnl_error_c)
+		print_error_and_exit("GNL error: file. ", 1);
 	else
 		print_error_and_exit("No such error code.", 0);
 }

@@ -8,6 +8,10 @@ typedef enum		e_error
 	sdl_init_error,
 	sdl_window_error,
 	sdl_renderer_error,
+	file_close_error,
+	line_error,
+	file_open_error,
+	gnl_error_c,
 	number_of_errors
 }					t_error;
 

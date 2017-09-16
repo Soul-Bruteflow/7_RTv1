@@ -18,7 +18,8 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		rtv = rtv_init(av);
+		rtv->pars->av = av;
+		rtv = rtv_init(rtv->pars->av);
 		create_window(rtv, 800, 600, "RTv1, 800x600\0");
 		rtv->scene = create_scene(1);
 

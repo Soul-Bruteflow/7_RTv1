@@ -103,7 +103,7 @@ t_scene *create_scene(int sceen_number)
 		scene->cam.up.x = 0;
 		scene->cam.up.y = 1;
 		scene->cam.up.z = 0;
-		scene->cam.fov = 65;
+		scene->cam.fov = 25;
 		scene->cam.eye = ft_vec3d_unit(vec3d_sub(&scene->cam.d, &scene->cam.o));
 		scene->cam.vpRight = ft_vec3d_unit(vec3d_cross(&scene->cam.eye, &scene->cam.up));
 		scene->cam.vpUp = ft_vec3d_unit(vec3d_cross(&scene->cam.vpRight, &scene->cam.eye));

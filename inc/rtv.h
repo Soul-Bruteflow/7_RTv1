@@ -71,6 +71,16 @@ typedef	struct 		s_calc
 }					t_calc;
 
 /*
+** Parser struct
+*/
+typedef	struct 		s_pars
+{
+	int 			fd;
+	char			**av;
+	char			*line;
+}					t_pars;
+
+/*
 ** Main struct.
 ** av - ./RTv1 arguments
 */
@@ -81,6 +91,7 @@ typedef struct		s_rtv
 	t_win			*win;
 	t_scene			*scene;
 	t_calc			*calc;
+	t_pars			*pars;
 }					t_rtv;
 
 /*
