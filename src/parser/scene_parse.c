@@ -1,4 +1,5 @@
 #include "rtv.h"
+#include "rtv_defines.h"
 
 static t_bool	scene_line_one(t_rtv *r)
 {
@@ -39,40 +40,24 @@ static t_bool	scene_line_three(t_rtv *r)
 	return (false);
 }
 
-static t_bool get_scene_numbers(t_rtv *r, uint8_t *n)
-{
-	int tmp;
-
-	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
-	{
-		tmp = ft_atoi(r->pars->line);
-		if (tmp >= 1 && tmp <= 10)
-		{
-			*n = (uint8_t)tmp;
-			return (true);
-		}
-	}
-	return (false);
-}
-
 t_bool	parse_scene(t_rtv *r)
 {
-	uint8_t n;
+	float n;
 
 	if (!(scene_line_one(r)))
 		return (false);
-	if (!(get_scene_numbers(r, &n)))
-		return (false);
-	r->scene->lights_n = n;
+	if (!(parse_number(r, &n, S_MIN, S_MAX)))
+			return (false);
+	r->scene->lights_n = (Uint8)n;
 	if (!(scene_line_two(r)))
 		return (false);
-	if (!(get_scene_numbers(r, &n)))
+	if (!(parse_number(r, &n, S_MIN, S_MAX)))
 		return (false);
-	r->scene->lights_n = n;
+	r->scene->materials_n = (Uint8)n;
 	if (!(scene_line_three(r)))
 		return (false);
-	if (!(get_scene_numbers(r, &n)))
+	if (!(parse_number(r, &n, S_MIN, S_MAX)))
 		return (false);
-	r->scene->lights_n = n;
+	r->scene->objects_n = (Uint8)n;
 	return (true);
 }

@@ -74,7 +74,7 @@ typedef struct	s_material
 typedef struct	s_light
 {
 	t_vec3d		pos;
-	t_rgbap		intensity;
+	t_rgbap		color;
 }				t_light;
 
 /*

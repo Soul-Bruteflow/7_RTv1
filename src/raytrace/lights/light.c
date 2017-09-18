@@ -16,8 +16,8 @@ void	set_light(t_light *light, t_vec3d pos, t_rgbap intensity)
 	light->pos.x = pos.x;
 	light->pos.y = pos.y;
 	light->pos.z = pos.z;
-	light->intensity.red = intensity.red;
-	light->intensity.green = intensity.green;
-	light->intensity.blue = intensity.blue;
-	light->intensity.alpha = intensity.alpha;
+	light->color.red = intensity.red;
+	light->color.green = intensity.green;
+	light->color.blue = intensity.blue;
+	light->color.alpha = intensity.alpha;
 }

@@ -1,45 +1,27 @@
 #include "rtv.h"
+#include "rtv_defines.h"
 
-static t_bool	cam_line_one(t_rtv *r)
+t_bool	new_lights(t_rtv *r)
 {
-	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
+	int i;
+
+	i = 0;
+	while (i < r->scene->lights_n)
 	{
-		if (ft_strcmp(r->pars->line, "camera position:") == 0)
-		{
-			free(r->pars->line);
-			return (true);
-		}
+		r->scene->lights[i] = new_light();
+		i++;
 	}
-	return (false);
+//	r->scene->lights[0] = new_light();
+//	r->scene->lights[1] = new_light();
+//	r->scene->lights[2] = new_light();
+	return (true);
 }
 
-static t_bool	cam_line_two(t_rtv *r)
+t_bool	create_scene_real(t_rtv* r)
 {
-	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
-	{
-		if (ft_strcmp(r->pars->line, "camera direction:") == 0)
-		{
-			free(r->pars->line);
-			return (true);
-		}
-	}
-	return (false);
-}
-
-t_bool	parse_camera(t_rtv *r)
-{
-	if (!(cam_line_one(r)))
+	new_scene(r, r->scene->lights_n, r->scene->materials_n, r->scene->objects_n);
+	if (!(new_lights(r)))
 		return (false);
-	if (!(parse_vecor(r, &r->scene->cam.o)))
-		return (false);
-	if (!(cam_line_two(r)))
-		return (false);
-	if (!(parse_vecor(r, &r->scene->cam.d)))
-		return (false);
-
-	printf("x %f, ", r->scene->cam.d.x);
-	printf("y %f, ", r->scene->cam.d.y);
-	printf("z %f\n", r->scene->cam.d.z);
 
 	return (true);
 }
@@ -49,8 +31,40 @@ void	parser_read_one(t_rtv *r)
 	open_file(r);
 	if (!(parse_scene(r)))
 		rtv_error(parse_error);
+
+	create_scene_real(r);
+
 	if (!(parse_camera(r)))
 		rtv_error(parse_error);
+
+	if (!(parse_lights(r)))
+		rtv_error(parse_error);
+
+//	printf("0 pos.x %f, ", r->scene->lights[0]->pos.x);
+//	printf("0 pos.y %f, ", r->scene->lights[0]->pos.y);
+//	printf("0 pos.z %f\n", r->scene->lights[0]->pos.z);
+
+	printf("0 red %f, ", r->scene->lights[0]->color.red);
+	printf("0 green %f, ", r->scene->lights[0]->color.green);
+	printf("0 blue %f\n", r->scene->lights[0]->color.blue);
+
+//	printf("1 pos.x %f, ", r->scene->lights[1]->pos.x);
+//	printf("1 pos.y %f, ", r->scene->lights[1]->pos.y);
+//	printf("1 pos.z %f\n", r->scene->lights[1]->pos.z);
+
+	printf("1 red %f, ", r->scene->lights[1]->color.red);
+	printf("1 green %f, ", r->scene->lights[1]->color.green);
+	printf("1 blue %f\n", r->scene->lights[1]->color.blue);
+
+//	printf("2 pos.x %f, ", r->scene->lights[2]->pos.x);
+//	printf("2 pos.y %f, ", r->scene->lights[2]->pos.y);
+//	printf("2 pos.z %f\n", r->scene->lights[2]->pos.z);
+
+	printf("2 red %f, ", r->scene->lights[2]->color.red);
+	printf("2 green %f, ", r->scene->lights[2]->color.green);
+	printf("2 blue %f\n", r->scene->lights[2]->color.blue);
+
+
 	gnl_error(r, r->pars->n);
 	close_file(r);
 }

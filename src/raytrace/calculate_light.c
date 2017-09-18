@@ -25,9 +25,9 @@ float lambert(t_ray *light_ray, t_vec3d *normal, float *coef)
 */
 void lamb_dif(float lamb, t_rgbap *color, t_light cur_light, t_material cur_mat)
 {
-	color->red += lamb * cur_light.intensity.red * cur_mat.diffuse.red;
-	color->green += lamb * cur_light.intensity.green * cur_mat.diffuse.green;
-	color->blue += lamb * cur_light.intensity.blue * cur_mat.diffuse.blue;
+	color->red += lamb * cur_light.color.red * cur_mat.diffuse.red;
+	color->green += lamb * cur_light.color.green * cur_mat.diffuse.green;
+	color->blue += lamb * cur_light.color.blue * cur_mat.diffuse.blue;
 }
 
 /*

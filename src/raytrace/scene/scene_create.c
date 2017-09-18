@@ -6,26 +6,23 @@
 ** Allocates memory for new scene. And all objects,
 ** lights and materials defined bu arguments.
 */
-t_scene *new_scene(Uint8 nbr_of_objs, Uint8 nbr_of_mats, Uint8 nbr_of_lights)
+void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs)
 {
-	t_scene *scene;
+//	t_scene *scene;
+//
+//	scene = malloc(sizeof(*(scene)));
+//	if (scene == NULL)
+//		rtv_error(malloc_error);
 
-	scene = malloc(sizeof(*(scene)));
-	if (scene == NULL)
+	r->scene->objects = malloc(n_of_objs * sizeof(r->scene->objects));
+	if (r->scene->objects == NULL)
 		rtv_error(malloc_error);
-	scene->objects = malloc(nbr_of_objs * sizeof(scene->objects));
-	if (scene->objects == NULL)
+	r->scene->materials = malloc(n_of_mats * sizeof(r->scene->materials));
+	if (r->scene->materials == NULL)
 		rtv_error(malloc_error);
-	scene->materials = malloc(nbr_of_mats * sizeof(scene->materials));
-	if (scene->materials == NULL)
+	r->scene->lights = malloc(n_of_lights * sizeof(r->scene->lights));
+	if (r->scene->lights == NULL)
 		rtv_error(malloc_error);
-	scene->lights = malloc(nbr_of_lights * sizeof(scene->lights));
-	if (scene->lights == NULL)
-		rtv_error(malloc_error);
-	scene->objects_n = nbr_of_objs;
-	scene->materials_n = nbr_of_mats;
-	scene->lights_n = nbr_of_lights;
-	return (scene);
 }
 
 void create_sceen_one(t_scene *scene)
@@ -48,9 +45,10 @@ void create_sceen_one(t_scene *scene)
 	scene->materials[0] = new_material();
 	scene->materials[1] = new_material();
 	scene->materials[2] = new_material();
-	scene->lights[0] = new_light();
-	scene->lights[1] = new_light();
-	scene->lights[2] = new_light();
+
+//	scene->lights[0] = new_light();
+//	scene->lights[1] = new_light();
+//	scene->lights[2] = new_light();
 
 //	float tmp[2] = {30, 60};
 
@@ -86,45 +84,39 @@ void create_sceen_one(t_scene *scene)
 
 }
 
-t_scene *create_scene(int sceen_number)
+void create_scene(t_rtv *r)
 {
-	t_scene *scene;
+//	r->scene = new_scene(4, 3, 3);
 
-	if (sceen_number == 1)
-	{
-		scene = new_scene(4, 3, 3);
+	r->scene->cam.o.x = 0;
+	r->scene->cam.o.y = 0;
+	r->scene->cam.o.z = -1900;
+	r->scene->cam.d.x = 0;
+	r->scene->cam.d.y = 0;
+	r->scene->cam.d.z = 1;
+	r->scene->cam.up.x = 0;
+	r->scene->cam.up.y = 1;
+	r->scene->cam.up.z = 0;
+	r->scene->cam.fov = 25;
+	r->scene->cam.eye = ft_vec3d_unit(vec3d_sub(&r->scene->cam.d, &r->scene->cam.o));
+	r->scene->cam.vpRight = ft_vec3d_unit(vec3d_cross(&r->scene->cam.eye, &r->scene->cam.up));
+	r->scene->cam.vpUp = ft_vec3d_unit(vec3d_cross(&r->scene->cam.vpRight, &r->scene->cam.eye));
 
-		scene->cam.o.x = 0;
-		scene->cam.o.y = 0;
-		scene->cam.o.z = -1900;
-		scene->cam.d.x = 0;
-		scene->cam.d.y = 0;
-		scene->cam.d.z = 1;
-		scene->cam.up.x = 0;
-		scene->cam.up.y = 1;
-		scene->cam.up.z = 0;
-		scene->cam.fov = 25;
-		scene->cam.eye = ft_vec3d_unit(vec3d_sub(&scene->cam.d, &scene->cam.o));
-		scene->cam.vpRight = ft_vec3d_unit(vec3d_cross(&scene->cam.eye, &scene->cam.up));
-		scene->cam.vpUp = ft_vec3d_unit(vec3d_cross(&scene->cam.vpRight, &scene->cam.eye));
-
-		float fovRadians = PI * (scene->cam.fov / 2) / 180;
+		float fovRadians = PI * (r->scene->cam.fov / 2) / 180;
 		float heightWidthRatio = 600.0f / 800.0f;
-		scene->cam.halfWidth = tanf(fovRadians);
-		scene->cam.halfHeight = heightWidthRatio * scene->cam.halfWidth;
-		float camerawidth = scene->cam.halfWidth * 2;
-		float cameraheight = scene->cam.halfHeight * 2;
-		scene->cam.pixelWidth = camerawidth / (800.0f - 1);
-		scene->cam.pixelHeight = cameraheight / (600.0f - 1);
+	r->scene->cam.halfWidth = tanf(fovRadians);
+	r->scene->cam.halfHeight = heightWidthRatio * r->scene->cam.halfWidth;
+		float camerawidth = r->scene->cam.halfWidth * 2;
+		float cameraheight = r->scene->cam.halfHeight * 2;
+	r->scene->cam.pixelWidth = camerawidth / (800.0f - 1);
+	r->scene->cam.pixelHeight = cameraheight / (600.0f - 1);
 
-		scene->ray.start = scene->cam.o;
+	r->scene->ray.start = r->scene->cam.o;
 
 //		scene->cam = create_perspective_cam(ft_set_vector(0, 0, -200),
 //				ft_set_vector(0, 0, 1), ft_set_vector(0, 1, 0), w_h);
 
-		create_sceen_one(scene);
-	}
-	return (scene);
+		create_sceen_one(r->scene);
 }
 
 t_obj3d *new_object(t_obj_type object_type)

@@ -48,9 +48,9 @@ typedef struct		s_scene
 	t_ray			ray;
 	t_cam			cam;
 	t_vec2d			point;
-	Uint8 			objects_n;
-	Uint8 			materials_n;
-	Uint8 			lights_n;
+	int 			objects_n;
+	int				materials_n;
+	int 			lights_n;
 }					t_scene;
 
 /*
@@ -110,9 +110,12 @@ int					get_next_line(const int fd, char **line);
 void				open_file(t_rtv *r);
 void				close_file(t_rtv *r);
 void				gnl_error(t_rtv *r, int i);
-t_bool				parse_vecor(t_rtv *r, t_vec3d *v);
-t_bool				parse_number(t_rtv *r, float *n);
+t_bool				parse_vector(t_rtv *r, t_vec3d *v, int min, int max);
+t_bool				parse_number(t_rtv *r, float *n, int min, int max);
+t_bool 				parse_color(t_rtv *r, t_rgbap *c, float min, float max);
 t_bool				parse_scene(t_rtv *r);
+t_bool				parse_camera(t_rtv *r);
+t_bool 				parse_lights(t_rtv *r);
 
 /*
 ** RTv1
@@ -136,9 +139,9 @@ void				calculate_reflection(t_rtv *rtv);
 /*
 ** Scene
 */
-t_scene *new_scene(Uint8 nbr_of_objs, Uint8 nbr_of_mats, Uint8 nbr_of_lights);
+void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs);
 void create_sceen_one(t_scene *scene);
-t_scene *create_scene(int sceen_number);
+void create_scene(t_rtv *r);
 t_obj3d *new_object(t_obj_type object_type);
 
 /*
