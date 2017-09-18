@@ -18,8 +18,10 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		rtv->pars->av = av;
-		rtv = rtv_init(rtv->pars->av);
+		rtv = rtv_init(av);
+
+		parser_read_one(rtv);
+
 		create_window(rtv, 800, 600, "RTv1, 800x600\0");
 		rtv->scene = create_scene(1);
 

@@ -1,22 +1,19 @@
-scene
-{
-	lights:
-					3;
-	materials:
-					3;
-	objects:
-					4;
-}
-
-camera
-{
-	cam_pos:
-					0, 0, -1900;
-	cam_dir:
-					0, 0, 1;
-	fov:
-					25;
-}
+lights:
+			3
+materials:
+			3
+objects:
+			4
+camera position:
+					0
+					0
+					-1900
+camera direction:
+					0
+					0
+					1
+fov:
+					25
 	
 lights
 {

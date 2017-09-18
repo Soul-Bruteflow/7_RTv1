@@ -28,7 +28,7 @@ t_rtv	*rtv_init(char **av)
 	rtv_tmp->pars = malloc(sizeof(*(rtv_tmp->pars)));
 	if (rtv_tmp->pars == NULL)
 		rtv_error(malloc_error);
-	rtv_tmp->av = av;
+	rtv_tmp->pars->av = av;
 	rtv_tmp->win->draw_buf = NULL;
 	rtv_tmp->win->pitch = WIDTH * BITS;
 	rtv_tmp->win->offset = 0;

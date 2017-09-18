@@ -1,9 +1,10 @@
 #ifndef _RTV1_H
-#define _RTV1_H
+# define _RTV1_H
 
 # include <SDL2/SDL.h>
 # include "rtv_error.h"
 # include "objects.h"
+# include "libft.h"
 
 /*
 ** Basic SDL2 variables
@@ -76,6 +77,7 @@ typedef	struct 		s_calc
 typedef	struct 		s_pars
 {
 	int 			fd;
+	int 			n;
 	char			**av;
 	char			*line;
 }					t_pars;
@@ -99,6 +101,18 @@ typedef struct		s_rtv
 */
 void				rtv_error(t_error error_code);
 void				print_error_and_exit(const char *error_text, Uint8 sdl);
+
+/*
+** Parser
+*/
+void				parser_read_one(t_rtv *r);
+int					get_next_line(const int fd, char **line);
+void				open_file(t_rtv *r);
+void				close_file(t_rtv *r);
+void				gnl_error(t_rtv *r, int i);
+t_bool				parse_vecor(t_rtv *r, t_vec3d *v);
+t_bool				parse_number(t_rtv *r, float *n);
+t_bool				parse_scene(t_rtv *r);
 
 /*
 ** RTv1
