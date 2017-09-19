@@ -1,31 +1,49 @@
 #include "rtv.h"
 #include "libft.h"
 
+void 		skip_whitespaces(const char *s, int *i, float *fact)
+{
+	int j;
+	float tmp;
+
+	j = 0;
+	tmp = 1;
+	while ((ft_isspace(s[j]) !=0 || s[j] == '+') && s[j] != '\0')
+		j++;
+	if (s[j] == '-')
+	{
+		j++;
+		tmp = -1;
+	}
+	*i = j;
+	*fact = tmp;
+}
+
 float		ft_atof(const char *s)
 {
-	float rez = 0;
-	float fact = 1;
+	float		rez[2];
+	int			d[2];
+	int			i;
 
-	while ((ft_isspace(*s) !=0 || *s == '+') && *s != '\0')
-		s++;
-	if (*s == '-')
+	rez[0] = 0;
+	skip_whitespaces(s, &i, &rez[1]);
+	d[1] = 0;
+	while (s[i])
 	{
-		s++;
-		fact = -1;
-	}
-	for (int point_seen = 0; *s; s++)
-	{
-		if (*s == '.')
+		if (s[i] == '.')
 		{
-			point_seen = 1;
+			d[1] = 1;
+			i++;
 			continue;
 		}
-		int d = *s - '0';
-		if (d >= 0 && d <= 9)
+		d[0] = s[i] - '0';
+		if (d >= 0 && d[0] <= 9)
 		{
-			if (point_seen) fact /= 10.0f;
-			rez = rez * 10.0f + (float)d;
+			if (d[1])
+				rez[1] /= 10.0f;
+			rez[0] = rez[0] * 10.0f + (float)d[0];
 		}
+		i++;
 	}
-	return rez * fact;
+	return rez[0] * rez[1];
 }

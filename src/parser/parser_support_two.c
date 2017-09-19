@@ -7,7 +7,7 @@ t_bool parse_float_number(t_rtv *r, float *n, float min, float max)
 	float tmp;
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
 	{
-		tmp = (float)ft_atof(r->pars->line);
+		tmp = ft_atof(r->pars->line);
 		if (tmp >= min && tmp <= max)
 		{
 			*n = tmp;
