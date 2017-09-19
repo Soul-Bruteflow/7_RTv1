@@ -42,12 +42,6 @@ typedef struct	s_cam
 	float		pixelHeight;
 	float		halfWidth;
 	float		halfHeight;
-
-//	t_vec3d		forward;
-//	t_vec3d		up;
-//	t_vec3d		right;
-//	float		h;
-//	float 		w;
 }				t_cam;
 
 /*

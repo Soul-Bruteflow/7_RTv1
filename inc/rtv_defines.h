@@ -26,6 +26,8 @@
 # define F_MAX 90
 # define C_MIN 0
 # define C_MAX 1
+# define R_MIN 0.01
+# define R_MAX 0.99
 
 # define min(a,b) (((a) < (b)) ? (a) : (b))
 
