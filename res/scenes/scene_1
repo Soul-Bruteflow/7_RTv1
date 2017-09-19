@@ -22,7 +22,7 @@ position:
 position:
 					400
 					300
-					1000
+					-1000
 position:
 					1600
 					0
@@ -64,7 +64,7 @@ reflection:
 					0.01
 reflection:
 					0.01
-objects
+objects:
 plane:
 normal:
 					2
@@ -106,5 +106,4 @@ axis:
 angle:
 					10
 material:
-					2;	
-}
+					2

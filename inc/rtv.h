@@ -117,8 +117,10 @@ t_bool				parse_scene(t_rtv *r);
 t_bool				parse_camera(t_rtv *r);
 t_bool 				parse_lights(t_rtv *r);
 t_bool				parse_materials(t_rtv *r);
+t_bool				parse_objects(t_rtv *r);
 float				ft_atof(const char *s);
 t_bool 				parse_float_number(t_rtv *r, float *n, float min, float max);
+t_bool 				get_str(t_rtv *r);
 
 /*
 ** RTv1

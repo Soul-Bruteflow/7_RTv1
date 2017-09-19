@@ -33,3 +33,10 @@ t_bool parse_color(t_rtv *r, t_rgbap *c, float min, float max)
 		return (false);
 	return (true);
 }
+
+t_bool get_str(t_rtv *r)
+{
+	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
+		return (true);
+	return (false);
+}

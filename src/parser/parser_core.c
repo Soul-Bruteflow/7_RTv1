@@ -1,5 +1,4 @@
 #include "rtv.h"
-#include "rtv_defines.h"
 
 t_bool	new_lights(t_rtv *r)
 {
@@ -49,6 +48,8 @@ void	parser_read_one(t_rtv *r)
 		rtv_error(parse_error);
 	if (!(parse_materials(r)))
 		rtv_error(parse_error);
+	if (!(parse_objects(r)))
+		rtv_error(parse_error);
 
 ////	printf("0 pos.x %f, ", r->scene->lights[0]->pos.x);
 ////	printf("0 pos.y %f, ", r->scene->lights[0]->pos.y);
@@ -77,9 +78,9 @@ void	parser_read_one(t_rtv *r)
 //	printf("b %f, ", r->scene->materials[2]->diffuse.blue);
 //	printf("a %f\n", r->scene->materials[2]->diffuse.alpha);
 
-	printf("r %f, ", r->scene->materials[0]->reflection);
-	printf("r %f, ", r->scene->materials[1]->reflection);
-	printf("r %f, ", r->scene->materials[2]->reflection);
+//	printf("r %f, ", r->scene->materials[0]->reflection);
+//	printf("r %f, ", r->scene->materials[1]->reflection);
+//	printf("r %f, ", r->scene->materials[2]->reflection);
 
 	gnl_error(r, r->pars->n);
 	close_file(r);

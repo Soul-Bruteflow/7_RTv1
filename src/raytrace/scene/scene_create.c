@@ -8,12 +8,6 @@
 */
 void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs)
 {
-//	t_scene *scene;
-//
-//	scene = malloc(sizeof(*(scene)));
-//	if (scene == NULL)
-//		rtv_error(malloc_error);
-
 	r->scene->objects = malloc(n_of_objs * sizeof(r->scene->objects));
 	if (r->scene->objects == NULL)
 		rtv_error(malloc_error);
@@ -42,9 +36,9 @@ void create_sceen_one(t_scene *scene)
 	scene->objects[2]->intersect = intersect_cylinder_ray;
 	scene->objects[3]->intersect = intersect_cone_ray;
 
-	scene->materials[0] = new_material();
-	scene->materials[1] = new_material();
-	scene->materials[2] = new_material();
+//	scene->materials[0] = new_material();
+//	scene->materials[1] = new_material();
+//	scene->materials[2] = new_material();
 
 //	scene->lights[0] = new_light();
 //	scene->lights[1] = new_light();
@@ -74,13 +68,13 @@ void create_sceen_one(t_scene *scene)
 	set_cylinder(scene->objects[2], ft_set_vector(2, 90, 200), 80, 2);
 //	set_cone(scene->objects[3], ft_set_vector(400, 400, 0), tmp, 2);
 
-	set_material(scene->materials[0], ft_set_color(0, 1, 1, 1), 0.01);
-	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0.01);
-	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.01);
+//	set_material(scene->materials[0], ft_set_color(0, 1, 1, 1), 0.01);
+//	set_material(scene->materials[1], ft_set_color(0, 1, 0, 1), 0.01);
+//	set_material(scene->materials[2], ft_set_color(0, 0, 1, 1), 0.01);
 
-	set_light(scene->lights[0], ft_set_vector(0, 0, -2000), ft_set_color(1, 1, 1, 1));
-	set_light(scene->lights[1], ft_set_vector(400, 300, -1000), ft_set_color(0.6, 0.7, 1, 1));
-	set_light(scene->lights[2], ft_set_vector(1600, 0, -100), ft_set_color(0.3, 0.5, 1, 1));
+//	set_light(scene->lights[0], ft_set_vector(0, 0, -2000), ft_set_color(1, 1, 1, 1));
+//	set_light(scene->lights[1], ft_set_vector(400, 300, -1000), ft_set_color(0.6, 0.7, 1, 1));
+//	set_light(scene->lights[2], ft_set_vector(1600, 0, -100), ft_set_color(0.3, 0.5, 1, 1));
 
 }
 
@@ -88,16 +82,17 @@ void create_scene(t_rtv *r)
 {
 //	r->scene = new_scene(4, 3, 3);
 
-	r->scene->cam.o.x = 0;
-	r->scene->cam.o.y = 0;
-	r->scene->cam.o.z = -1900;
-	r->scene->cam.d.x = 0;
-	r->scene->cam.d.y = 0;
-	r->scene->cam.d.z = 1;
+//	r->scene->cam.o.x = 0;
+//	r->scene->cam.o.y = 0;
+//	r->scene->cam.o.z = -1900;
+//	r->scene->cam.d.x = 0;
+//	r->scene->cam.d.y = 0;
+//	r->scene->cam.d.z = 1;
+// 	r->scene->cam.fov = 25;
+
 	r->scene->cam.up.x = 0;
 	r->scene->cam.up.y = 1;
 	r->scene->cam.up.z = 0;
-	r->scene->cam.fov = 25;
 	r->scene->cam.eye = ft_vec3d_unit(vec3d_sub(&r->scene->cam.d, &r->scene->cam.o));
 	r->scene->cam.vpRight = ft_vec3d_unit(vec3d_cross(&r->scene->cam.eye, &r->scene->cam.up));
 	r->scene->cam.vpUp = ft_vec3d_unit(vec3d_cross(&r->scene->cam.vpRight, &r->scene->cam.eye));
