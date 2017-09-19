@@ -31,7 +31,7 @@ color:
 					1.0
 					1.0
 					1.0
-					1.0					
+					1.0
 color:
 					0.6
 					0.7
@@ -42,24 +42,28 @@ color:
 					0.5
 					1.0
 					1.0
-
-materials
-{
-	#1:
-		color:
-					0, 1, 1, 1;
-		reflection:
-					0.01;
-	#2:
-		color:
-					0, 1, 0, 1;
-		reflection:
-					0.01;
-	#3:
-		color:
-					0, 0, 1, 1;
-		reflection:
-					0.01;
+materials:
+color:
+					0.0
+					1.0
+					1.0
+					1.0
+color:
+					0.0
+					1.0
+					0.0
+					1.0
+color:
+					0.0
+					0.0
+					1.0
+					1.0
+reflection:
+					0.01	
+reflection:
+					0.01
+reflection:
+					0.01
 }
 
 objects

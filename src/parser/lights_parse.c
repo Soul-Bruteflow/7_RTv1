@@ -41,18 +41,21 @@ static t_bool	parse_lights_color(t_rtv *r)
 {
 	int i;
 
-	i = -1;
-	while (i++ < r->scene->lights_n)
-	{
-		if (ft_strcmp(r->pars->line, "color:") == 0)
+//	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
+//	{
+		i = -1;
+		while (i++ < r->scene->lights_n)
 		{
-			free(r->pars->line);
-			if (!(parse_color(r, &r->scene->lights[i]->color, C_MIN, C_MAX)))
-				return (false);
-			r->pars->n = get_next_line(r->pars->fd, &r->pars->line);
+			if (ft_strcmp(r->pars->line, "color:") == 0)
+			{
+				free(r->pars->line);
+				if (!(parse_color(r, &r->scene->lights[i]->color, C_MIN, C_MAX)))
+					return (false);
+				r->pars->n = get_next_line(r->pars->fd, &r->pars->line);
+			}
 		}
 		return (true);
-	}
+//	}
 	return (false);
 }
 

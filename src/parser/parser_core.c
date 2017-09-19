@@ -44,25 +44,28 @@ void	parser_read_one(t_rtv *r)
 //	printf("0 pos.y %f, ", r->scene->lights[0]->pos.y);
 //	printf("0 pos.z %f\n", r->scene->lights[0]->pos.z);
 
-	printf("0 red %f, ", r->scene->lights[0]->color.red);
-	printf("0 green %f, ", r->scene->lights[0]->color.green);
-	printf("0 blue %f\n", r->scene->lights[0]->color.blue);
+	printf("r %f, ", r->scene->lights[0]->color.red);
+	printf("g %f, ", r->scene->lights[0]->color.green);
+	printf("b %f, ", r->scene->lights[0]->color.blue);
+	printf("a %f\n", r->scene->lights[0]->color.alpha);
 
 //	printf("1 pos.x %f, ", r->scene->lights[1]->pos.x);
 //	printf("1 pos.y %f, ", r->scene->lights[1]->pos.y);
 //	printf("1 pos.z %f\n", r->scene->lights[1]->pos.z);
 
-	printf("1 red %f, ", r->scene->lights[1]->color.red);
-	printf("1 green %f, ", r->scene->lights[1]->color.green);
-	printf("1 blue %f\n", r->scene->lights[1]->color.blue);
+	printf("r %f, ", r->scene->lights[1]->color.red);
+	printf("g %f, ", r->scene->lights[1]->color.green);
+	printf("b %f, ", r->scene->lights[1]->color.blue);
+	printf("a %f\n", r->scene->lights[1]->color.alpha);
 
 //	printf("2 pos.x %f, ", r->scene->lights[2]->pos.x);
 //	printf("2 pos.y %f, ", r->scene->lights[2]->pos.y);
 //	printf("2 pos.z %f\n", r->scene->lights[2]->pos.z);
 
-	printf("2 red %f, ", r->scene->lights[2]->color.red);
-	printf("2 green %f, ", r->scene->lights[2]->color.green);
-	printf("2 blue %f\n", r->scene->lights[2]->color.blue);
+	printf("r %f, ", r->scene->lights[2]->color.red);
+	printf("g %f, ", r->scene->lights[2]->color.green);
+	printf("b %f, ", r->scene->lights[2]->color.blue);
+	printf("a %f\n", r->scene->lights[2]->color.alpha);
 
 
 	gnl_error(r, r->pars->n);

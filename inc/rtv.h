@@ -116,6 +116,7 @@ t_bool 				parse_color(t_rtv *r, t_rgbap *c, float min, float max);
 t_bool				parse_scene(t_rtv *r);
 t_bool				parse_camera(t_rtv *r);
 t_bool 				parse_lights(t_rtv *r);
+float				ft_atof(const char *s);
 
 /*
 ** RTv1
