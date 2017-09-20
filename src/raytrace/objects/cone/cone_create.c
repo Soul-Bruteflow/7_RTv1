@@ -11,26 +11,26 @@ t_cone *new_cone()
 	return (cone);
 }
 
-//void	set_cone_radius(t_obj3d *obj, float new_radius)
-//{
-//	t_cone *tmp_cone;
-//
-//	tmp_cone = obj->type;
-//	tmp_cone->params[0] = new_radius;
-//}
-
-//void	set_cone_height(t_obj3d *obj, float new_height)
-//{
-//	t_cone *tmp_cone;
-//
-//	tmp_cone = obj->type;
-//	tmp_cone->params[1] = new_height;
-//}
-
-void	set_cone(t_obj3d *obj, t_vec3d new_position, float params[], Uint16 new_material)
+void	set_cone_tip(t_obj3d *obj, t_vec3d new_tip)
 {
-	set_object_position(obj, new_position);
+
+}
+
+void	set_cone_axis(t_obj3d *obj, t_vec3d new_axis)
+{
+
+}
+
+void	set_cone_angle(t_obj3d *obj, float new_angle)
+{
+
+}
+
+void	set_cone(t_obj3d *obj, t_vec3d *data, float angle, Uint16 new_material)
+{
+	set_object_position(obj, data[0]);
 	set_object_material(obj, new_material);
-//	set_cone_radius(obj, params[0]);
-//	set_cone_height(obj, params[1]);
+	set_cone_angle(obj, angle);
+	set_cone_tip(obj, data[1]);
+	set_cone_axis(obj, data[2]);
 }

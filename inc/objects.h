@@ -96,9 +96,9 @@ t_bool 			intersect_cylinder_ray(t_ray *r, t_obj3d *object, float *t);
 ** Cone
 */
 t_cone 			*new_cone();
-void			set_cone_radius(t_obj3d *obj, float new_radius);
-void			set_cone_height(t_obj3d *obj, float new_height);
-void			set_cone(t_obj3d *obj, t_vec3d new_position, float params[], Uint16 new_material);
+void			set_cone_tip(t_obj3d *obj, t_vec3d new_tip);
+void			set_cone_axis(t_obj3d *obj, t_vec3d new_axis);
+void			set_cone_angle(t_obj3d *obj, float new_angle);
 t_bool 			intersect_cone_ray(t_ray *r, t_obj3d *object, float *t);
 
 #endif
