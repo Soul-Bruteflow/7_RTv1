@@ -13,8 +13,8 @@ void	keyboard_core(t_rtv *rtv)
 
 //		rtv->scene->ray.dir.z +=50;
 
-		t_cone *s = rtv->scene->objects[3]->type;
-		s->tip.z += 50;
+//		t_cone *s = rtv->scene->objects[3]->type;
+//		s->tip.z += 50;
 
 //		rtv->scene->objects[2]->pos.x -= 50;
 
@@ -30,8 +30,8 @@ void	keyboard_core(t_rtv *rtv)
 	if (SDL_KEYDOWN && rtv->sdl->key_state[SDL_SCANCODE_DOWN])
 	{
 
-		t_cone *s = rtv->scene->objects[3]->type;
-		s->tip.z -= 50;
+//		t_cone *s = rtv->scene->objects[3]->type;
+//		s->tip.z -= 50;
 
 //		rtv->scene->objects[2]->pos.x += 50;
 

@@ -95,7 +95,7 @@ radius:
 material:
 					2
 cone:
-tip:
+tip/position:
 					400
 					400
 					150
@@ -106,4 +106,4 @@ axis:
 angle:
 					10
 material:
-					2
+					1

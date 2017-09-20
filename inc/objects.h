@@ -47,7 +47,7 @@ typedef struct	s_cylinder
 typedef struct	s_cone
 {
 	float		angle;
-	t_vec3d		tip;
+//	t_vec3d		tip;
 	t_vec3d		axis;
 }				t_cone;
 
@@ -57,8 +57,8 @@ typedef struct	s_cone
 typedef struct	s_obj3d
 {
 	void		*type;
-	t_vec3d		cone_norm;
-	t_vec3d		tip;
+//	t_vec3d		cone_norm;
+//	t_vec3d		tip;
 	t_obj_type	obj_type;
 	t_bool		hit;
 	t_vec3d		pos;
@@ -96,6 +96,7 @@ t_bool 			intersect_cylinder_ray(t_ray *r, t_obj3d *object, float *t);
 ** Cone
 */
 t_cone 			*new_cone();
+void			set_cone(t_obj3d *obj, t_vec3d *data, float angle, Uint16 new_material);
 void			set_cone_tip(t_obj3d *obj, t_vec3d new_tip);
 void			set_cone_axis(t_obj3d *obj, t_vec3d new_axis);
 void			set_cone_angle(t_obj3d *obj, float new_angle);

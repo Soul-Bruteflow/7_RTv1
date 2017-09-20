@@ -50,9 +50,11 @@ t_bool	parse_objects(t_rtv *r)
 		{
 			if (!(parse_cone(r, i)))
 				return (false);
-			if (!(get_str(r)))
-				return (false);
+//			if (!(get_str(r)))
+//				return (false);
 		}
+		else if (i == r->scene->objects_n)
+			return (true);
 		else
 			return (false);
 	}

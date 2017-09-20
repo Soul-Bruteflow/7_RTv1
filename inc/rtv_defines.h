@@ -32,6 +32,8 @@
 # define M_MAX 10
 # define SPR_MIN 1
 # define SPR_MAX 1000
+# define A_MIN 1
+# define A_MAX 90
 
 # define min(a,b) (((a) < (b)) ? (a) : (b))
 

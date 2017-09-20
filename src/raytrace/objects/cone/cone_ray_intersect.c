@@ -10,7 +10,7 @@ static float	calculate_discriminant(t_ray *r, t_obj3d *o, float *b, float *a)
 	float c;
 
 	float dv = vec3d_dot(&r->dir, &s->axis);
-	t_vec3d co = vec3d_sub(&r->start, &s->tip);
+	t_vec3d co = vec3d_sub(&r->start, &o->pos);
 	float cov = vec3d_dot(&co, &s->axis);
 	float dco = vec3d_dot(&r->dir, &co);
 	float cos = powf(cosf(s->angle), 2);

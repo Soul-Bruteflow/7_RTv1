@@ -126,6 +126,7 @@ t_bool				check_line(t_rtv *r, const char *s);
 t_bool 				valid_material(t_rtv *r, Uint16 *material, int min, int max);
 t_bool				parse_sphere(t_rtv *r, int i);
 t_bool				parse_cylinder(t_rtv *r, int i);
+t_bool				parse_cone(t_rtv *r, int i);
 
 /*
 ** RTv1
