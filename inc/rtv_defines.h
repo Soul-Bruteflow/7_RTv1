@@ -28,6 +28,10 @@
 # define C_MAX 1
 # define R_MIN 0.01
 # define R_MAX 0.99
+# define M_MIN 0
+# define M_MAX 10
+# define SPR_MIN 1
+# define SPR_MAX 1000
 
 # define min(a,b) (((a) < (b)) ? (a) : (b))
 

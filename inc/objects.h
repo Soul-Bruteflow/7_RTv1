@@ -49,12 +49,6 @@ typedef struct	s_cone
 	float		angle;
 	t_vec3d		tip;
 	t_vec3d		axis;
-
-//	float		cosa;		// half cone angle
-//	float		h;			// height
-//	t_vec3d		c;			// tip position
-//	t_vec3d		v;			// axis
-//	float		params[2];
 }				t_cone;
 
 /*

@@ -2,7 +2,7 @@
 #include "string.h"
 #include "rtv_defines.h"
 
-t_bool parse_float_number(t_rtv *r, float *n, float min, float max)
+t_bool	parse_float_number(t_rtv *r, float *n, float min, float max)
 {
 	float tmp;
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
@@ -21,7 +21,7 @@ t_bool parse_float_number(t_rtv *r, float *n, float min, float max)
 /*
 ** Parses line by line vector values.
 */
-t_bool parse_color(t_rtv *r, t_rgbap *c, float min, float max)
+t_bool	parse_color(t_rtv *r, t_rgbap *c, float min, float max)
 {
 	if (!(parse_float_number(r, &c->red, min, max)))
 		return (false);
@@ -34,9 +34,35 @@ t_bool parse_color(t_rtv *r, t_rgbap *c, float min, float max)
 	return (true);
 }
 
-t_bool get_str(t_rtv *r)
+t_bool	get_str(t_rtv *r)
 {
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
 		return (true);
 	return (false);
+}
+
+/*
+** Reads the line and compares it to the provided *s. Frees the line afterwards.
+*/
+t_bool	check_line(t_rtv *r, const char *s)
+{
+	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
+	{
+		if (ft_strcmp(r->pars->line, s) == 0)
+		{
+			free(r->pars->line);
+			return (true);
+		}
+	}
+	return (false);
+}
+
+t_bool valid_material(t_rtv *r, Uint16 *material, int min, int max)
+{
+	float tmp;
+
+	if (!(parse_number(r, &tmp, min, max)))
+		return (false);
+	*material = (Uint16)tmp;
+	return (true);
 }

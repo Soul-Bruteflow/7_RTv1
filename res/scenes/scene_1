@@ -68,7 +68,7 @@ objects:
 plane:
 normal:
 					2
-					0
+					90
 					200
 point:
 					500
