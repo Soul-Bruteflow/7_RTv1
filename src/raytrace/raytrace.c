@@ -57,7 +57,7 @@ static void calculate_ray(t_rtv *rtv)
 	while((rtv->calc->coef > 0.01f) && (rtv->calc->level++ < 15))
 	{
 		rtv->calc->cur_obj = -1;
-		if (object_intersect(rtv->scene->objects, &rtv->scene->ray, &rtv->calc->cur_obj, &rtv->calc->new_start) == false)
+		if (object_intersect(rtv, &rtv->scene->ray, &rtv->calc->cur_obj, &rtv->calc->new_start) == false)
 			break;
 		if (normal_of_intersect(&rtv->calc->intersect_normal, &rtv->calc->new_start, rtv->scene->objects, rtv->calc->cur_obj) == false)
 			break;

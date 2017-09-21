@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(RTv1)
 
-file(GLOB SOURCES ./src/*.c ./src/*/*.c ./src/*/*/*.c ./src/*/*/*/*.c)
+file(GLOB SOURCES ./src/*.c ./src/*/*.c ./src/*/*/*.c ./src/*/*/*/*.c ./src/*/*/*/*/*.c)
 
 set(LIB_PATH libft)
 

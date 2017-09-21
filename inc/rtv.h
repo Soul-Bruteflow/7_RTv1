@@ -48,9 +48,9 @@ typedef struct		s_scene
 	t_ray			ray;
 	t_cam			cam;
 	t_vec2d			point;
-	int 			objects_n;
-	int				materials_n;
-	int 			lights_n;
+	int 			objs_n;
+	int				mats_n;
+	int 			lits_n;
 }					t_scene;
 
 /*
@@ -69,6 +69,8 @@ typedef	struct 		s_calc
 	int				material_n;
 	float			reflect;
 	t_vec3d			tmp;
+	int 			i;
+	int				n;
 }					t_calc;
 
 /*
@@ -105,29 +107,28 @@ void				print_error_and_exit(const char *error_text, Uint8 sdl);
 /*
 ** Parser
 */
-void				parser_read_one(t_rtv *r);
+t_bool				parser_core(t_rtv *r);
+t_bool				parse_scene(t_rtv *r);
+t_bool				parse_camera(t_rtv *r);
+t_bool				parse_lights(t_rtv *r);
+t_bool				parse_materials(t_rtv *r);
+t_bool				parse_objects(t_rtv *r);
+t_bool				parse_plane(t_rtv *r, int i);
+t_bool				parse_sphere(t_rtv *r, int i);
+t_bool				parse_cylinder(t_rtv *r, int i);
+t_bool				parse_cone(t_rtv *r, int i);
 int					get_next_line(const int fd, char **line);
 void				open_file(t_rtv *r);
 void				close_file(t_rtv *r);
 void				gnl_error(t_rtv *r, int i);
+float				ft_atof(const char *s);
+t_bool 				get_str(t_rtv *r);
 t_bool				parse_vector(t_rtv *r, t_vec3d *v, int min, int max);
 t_bool				parse_number(t_rtv *r, float *n, int min, int max);
 t_bool 				parse_color(t_rtv *r, t_rgbap *c, float min, float max);
-t_bool				parse_scene(t_rtv *r);
-t_bool				parse_camera(t_rtv *r);
-t_bool 				parse_lights(t_rtv *r);
-t_bool				parse_materials(t_rtv *r);
-t_bool				parse_objects(t_rtv *r);
-float				ft_atof(const char *s);
-t_bool 				parse_float_number(t_rtv *r, float *n, float min, float max);
-t_bool 				get_str(t_rtv *r);
-t_bool				parse_plane(t_rtv *r, int i);
+t_bool 				parse_float_number(t_rtv *r, float *n, float mi, float ma);
 t_bool				check_line(t_rtv *r, const char *s);
-t_bool 				valid_material(t_rtv *r, Uint16 *material, int min, int max);
-t_bool				parse_sphere(t_rtv *r, int i);
-t_bool				parse_cylinder(t_rtv *r, int i);
-t_bool				parse_cone(t_rtv *r, int i);
-
+t_bool 				valid_material(t_rtv *r, Uint16 *material, int mi, int ma);
 /*
 ** RTv1
 */
@@ -143,16 +144,17 @@ void				rtv_quit(t_rtv *rtv);
 */
 void				raytrace(t_rtv *rtv);
 t_bool				normal_of_intersect(t_vec3d *normal, t_vec3d *new_start, t_obj3d **objects, int cur_obj);
-t_bool				object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_start);
+t_bool	object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj, t_vec3d *new_start);
 void				calculate_light(t_rtv *rtv);
 void				calculate_reflection(t_rtv *rtv);
 
 /*
 ** Scene
 */
+void init_camera(t_rtv *r);
 void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs);
 void create_sceen_one(t_scene *scene);
-void create_scene(t_rtv *r);
+t_bool	create_scene(t_rtv* r);
 t_obj3d *new_object(t_obj_type object_type);
 
 /*

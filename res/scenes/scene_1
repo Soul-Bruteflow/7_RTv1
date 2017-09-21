@@ -1,9 +1,11 @@
+scene:
 lights:
 			3
 materials:
 			3
 objects:
 			4
+camera:
 camera position:
 					0
 					0
@@ -85,15 +87,6 @@ radius:
 					60
 material:
 					1
-cylinder:
-position:
-					2
-					90
-					200
-radius:
-					60
-material:
-					2
 cone:
 tip/position:
 					400
@@ -107,3 +100,13 @@ angle:
 					10
 material:
 					1
+cylinder:
+position:
+					2
+					90
+					200
+radius:
+					60
+material:
+					2
+end

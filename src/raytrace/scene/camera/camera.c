@@ -1,32 +1,28 @@
-//#include "rtv.h"
-//
-//t_cam *create_perspective_cam(t_vec3d origin, t_vec3d target, t_vec3d upguide, float fov_asp[])
-//{
-//	t_cam *new_cam;
-//	t_vec3d tmp1;
-//	t_vec3d tmp2;
-//
-////	new_cam = malloc(sizeof(*(new_cam)));
-////	if (new_cam == NULL)
-////		rtv_error(malloc_error);
-//
-//	new_cam->origin = origin;
-//	tmp1 = vec3d_sub(&target, &origin);
-//	tmp2 = vec3d_cross(&new_cam->forward, &upguide);
-//	new_cam->forward = ft_vec3d_norm(tmp1);
-//	new_cam->right = ft_vec3d_norm(tmp2);
-//	new_cam->up = vec3d_cross(&new_cam->right, &new_cam->forward);
-//	new_cam->h = tanf(fov_asp[0]);
-//	new_cam->w = new_cam->h * fov_asp[1];
-//	return (new_cam);
-//}
-//
-//void make_ray(t_cam *cam, t_vec2d point, t_ray *r)
-//{
-//	t_vec3d tmp1 = vec3d_scale((point.u * cam->w), &cam->right);
-//	t_vec3d tmp2 = vec3d_scale((point.v * cam->h), &cam->up);
-//	t_vec3d tmp3 = vec3d_add(&cam->forward, &tmp1);
-//	t_vec3d dir = vec3d_add(&tmp3, &tmp2);
-//	r->start = cam->origin;
-//	r->dir = ft_vec3d_norm(dir);
-//}
+#include "rtv.h"
+#include "rtv_defines.h"
+
+void init_camera(t_rtv *r)
+{
+	float fovRadians;
+	float heightWidthRatio;
+	float camerawidth;
+	float cameraheight;
+	t_cam *tm_cam;
+
+	tm_cam = &r->scene->cam;
+	tm_cam->up.x = 0;
+	tm_cam->up.y = 1;
+	tm_cam->up.z = 0;
+	tm_cam->eye = ft_vec3d_unit(vec3d_sub(&tm_cam->d, &tm_cam->o));
+	tm_cam->vpRight = ft_vec3d_unit(vec3d_cross(&tm_cam->eye, &tm_cam->up));
+	tm_cam->vpUp = ft_vec3d_unit(vec3d_cross(&tm_cam->vpRight, &tm_cam->eye));
+	fovRadians = PI * (tm_cam->fov / 2) / 180;
+	heightWidthRatio = FHEIGHT / FWIDTH;
+	tm_cam->halfWidth = tanf(fovRadians);
+	tm_cam->halfHeight = heightWidthRatio * tm_cam->halfWidth;
+	camerawidth = tm_cam->halfWidth * 2;
+	cameraheight = tm_cam->halfHeight * 2;
+	tm_cam->pixelWidth = camerawidth / (FWIDTH - 1);
+	tm_cam->pixelHeight = cameraheight / (FHEIGHT - 1);
+	r->scene->ray.start = tm_cam->o;
+}

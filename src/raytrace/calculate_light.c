@@ -1,16 +1,14 @@
 #include "rtv.h"
 
-t_bool calculate_shadows(t_obj3d **objects, t_ray *light_ray, float *t2)
+t_bool calculate_shadows(t_rtv *r, t_obj3d **objs, t_ray *light_ray, float *t2)
 {
 	int k;
 
 	k = -1;
-	while (k++ < 3)
+	while (k++ < r->scene->objs_n - 1)
 	{
-		if (objects[k]->intersect(light_ray, objects[k], t2))
-		{
+		if (objs[k]->intersect(light_ray, objs[k], t2))
 			return (true);
-		}
 	}
 	return (false);
 }
@@ -55,7 +53,7 @@ void calculate_light(t_rtv *rtv)
 	t_ray		light_ray;
 
 	j = -1;
-	while(j++ < 2)
+	while(j++ < rtv->scene->lits_n - 1)
 	{
 		cur_light = *rtv->scene->lights[j];
 
@@ -67,7 +65,7 @@ void calculate_light(t_rtv *rtv)
 			continue;
 		light_ray.start = rtv->calc->new_start;
 		light_ray.dir = vec3d_scale(1/t2, &dist);
-		if (!(calculate_shadows(rtv->scene->objects, &light_ray, &t2)))
+		if (!(calculate_shadows(rtv, rtv->scene->objects, &light_ray, &t2)))
 		{
 			float lamb = lambert(&light_ray, &rtv->calc->intersect_normal, &rtv->calc->coef);
 			lamb_dif(lamb, &rtv->calc->color, cur_light, rtv->calc->cur_mat);

@@ -20,10 +20,13 @@ int		main(int ac, char **av)
 	{
 		rtv = rtv_init(av);
 
-		parser_read_one(rtv);
+		if (!(parser_core(rtv)))
+			rtv_error(parse_error);
+
+		init_camera(rtv);
 
 		create_window(rtv, 800, 600, "RTv1, 800x600\0");
-		 create_scene(rtv);
+
 
 		clear_window(rtv);
 		raytrace(rtv);

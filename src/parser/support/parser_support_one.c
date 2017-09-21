@@ -36,8 +36,9 @@ void	gnl_error(t_rtv *r, int i)
 }
 
 /*
-** Converts current read string in to the float.
+** Parses int values in to the float.
 */
+
 t_bool parse_number(t_rtv *r, float *n, int min, int max)
 {
 	float tmp;
@@ -57,6 +58,7 @@ t_bool parse_number(t_rtv *r, float *n, int min, int max)
 /*
 ** Parses line by line vector values.
 */
+
 t_bool parse_vector(t_rtv *r, t_vec3d *v, int min, int max)
 {
 	if (!(parse_number(r, &v->x, min, max)))

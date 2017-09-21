@@ -3,7 +3,7 @@
 /*
 ** Find closest intersection
 */
-t_bool	object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_start)
+t_bool	object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj, t_vec3d *new_start)
 {
 	float	t;
 	int		i;
@@ -11,9 +11,9 @@ t_bool	object_intersect(t_obj3d **objects, t_ray *r, int *cur_obj, t_vec3d *new_
 
 	t = 2000;
 	i = -1;
-	while(i++ < 3)
+	while(i++ < rtv->scene->objs_n - 1)
 	{
-		if (objects[i]->intersect(r, objects[i], &t))
+		if (rtv->scene->objects[i]->intersect(r, rtv->scene->objects[i], &t))
 			*cur_obj = i;
 	}
 	if(*cur_obj == -1)

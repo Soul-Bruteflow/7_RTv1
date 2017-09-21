@@ -6,6 +6,8 @@
 */
 # define WIDTH 800
 # define HEIGHT 600
+# define FWIDTH 800.0f
+# define FHEIGHT 600.0f
 # define BITS 4
 
 /*

@@ -2,6 +2,10 @@
 #include "string.h"
 #include "rtv_defines.h"
 
+/*
+** Parses float values in to the float.
+*/
+
 t_bool	parse_float_number(t_rtv *r, float *n, float min, float max)
 {
 	float tmp;
@@ -19,8 +23,9 @@ t_bool	parse_float_number(t_rtv *r, float *n, float min, float max)
 }
 
 /*
-** Parses line by line vector values.
+** Parses line by line color values.
 */
+
 t_bool	parse_color(t_rtv *r, t_rgbap *c, float min, float max)
 {
 	if (!(parse_float_number(r, &c->red, min, max)))
@@ -34,6 +39,11 @@ t_bool	parse_color(t_rtv *r, t_rgbap *c, float min, float max)
 	return (true);
 }
 
+/*
+** Gets new string provided by the get_next_line. And checks if read from the
+** file is possible.
+*/
+
 t_bool	get_str(t_rtv *r)
 {
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
@@ -44,6 +54,7 @@ t_bool	get_str(t_rtv *r)
 /*
 ** Reads the line and compares it to the provided *s. Frees the line afterwards.
 */
+
 t_bool	check_line(t_rtv *r, const char *s)
 {
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
@@ -56,6 +67,10 @@ t_bool	check_line(t_rtv *r, const char *s)
 	}
 	return (false);
 }
+
+/*
+** Parses and checks if the parsed material value is valid.
+*/
 
 t_bool valid_material(t_rtv *r, Uint16 *material, int min, int max)
 {
