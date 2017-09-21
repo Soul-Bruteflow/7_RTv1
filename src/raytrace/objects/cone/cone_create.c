@@ -11,16 +11,6 @@ t_cone *new_cone()
 	return (cone);
 }
 
-//void	set_cone_tip(t_obj3d *obj, t_vec3d new_tip)
-//{
-//	t_cone *tmp_cone;
-//
-//	tmp_cone = obj->type;
-//	tmp_cone->tip.x = new_tip.x;
-//	tmp_cone->tip.y = new_tip.y;
-//	tmp_cone->tip.z = new_tip.z;
-//}
-
 void	set_cone_axis(t_obj3d *obj, t_vec3d new_axis)
 {
 	t_cone *tmp_cone;

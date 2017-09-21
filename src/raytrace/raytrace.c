@@ -13,56 +13,40 @@ static t_rgba set_pixel_color(t_rtv *rtv)
 	return (color);
 }
 
-static void set_raytrace(t_rtv *rtv, Uint16 x, Uint16 y)
+static void set_raytrace(t_rtv *r, Uint16 x, Uint16 y)
 {
-	rtv->calc->level = 1;
-	rtv->calc->coef = 1.0;
-	rtv->calc->color.red = 0;
-	rtv->calc->color.green = 0;
-	rtv->calc->color.blue = 0;
+	t_vec3d xcomp;
+	t_vec3d ycomp;
+	t_cam 	*c;
 
-
-
-//	t_vec2d x_y;
-//	x_y.v = (2.0f*x) / 800 - 1.0f;
-//	x_y.u = (-2.0f*y) / 600 + 1.0f;
-//	make_ray(rtv->scene->cam, x_y, &rtv->scene->ray);
-
-	t_vec3d xcomp = ft_vec3d_scale(rtv->scene->cam.vpRight, ((x * rtv->scene->cam.pixelWidth) - rtv->scene->cam.halfWidth));
-	t_vec3d ycomp = ft_vec3d_scale(rtv->scene->cam.vpUp, ((y * rtv->scene->cam.pixelHeight) - rtv->scene->cam.halfHeight));
-////
-	rtv->scene->ray.dir = ft_vec3d_unit(ft_vec3d_add3(rtv->scene->cam.eye, xcomp, ycomp));
-//
-
-//	float fovx = PI /4;
-//	float fovy = 600.0f/800.0f * fovx;
-//
-//	rtv->scene->ray.start.x = x;
-//	rtv->scene->ray.start.y = y;
-//	rtv->scene->ray.start.z = -200;
-//	rtv->scene->ray.dir.x = 0;
-//	rtv->scene->ray.dir.y = 0;
-//	rtv->scene->ray.dir.z = 1;
-
-//	printf("start.x - %f\n", rtv->scene->ray.start.x);
-//	printf("start.y - %f\n", rtv->scene->ray.start.y);
-//	printf("start.z - %f\n", rtv->scene->ray.start.z);
-//	printf("dir.x - %f\n", rtv->scene->ray.dir.x);
-//	printf("dir.y - %f\n", rtv->scene->ray.dir.y);
-//	printf("dir.z - %f\n", rtv->scene->ray.dir.z);
+	c = &r->scene->cam;
+	r->calc->level = 1;
+	r->calc->coef = 1.0;
+	r->calc->color.red = 0;
+	r->calc->color.green = 0;
+	r->calc->color.blue = 0;
+	xcomp = ft_vec3d_scale(c->vpRight, ((x * c->pixelWidth) - c->halfWidth));
+	ycomp = ft_vec3d_scale(c->vpUp, ((y * c->pixelHeight) - c->halfHeight));
+	r->scene->ray.dir = ft_vec3d_unit(ft_vec3d_add3(c->eye, xcomp, ycomp));
 }
 
 static void calculate_ray(t_rtv *rtv)
 {
-	while((rtv->calc->coef > 0.01f) && (rtv->calc->level++ < 15))
+	t_calc		*c;
+	t_scene		*s;
+
+	c = rtv->calc;
+	s = rtv->scene;
+	while((c->coef > 0.01f) && (c->level++ < 15))
 	{
-		rtv->calc->cur_obj = -1;
-		if (object_intersect(rtv, &rtv->scene->ray, &rtv->calc->cur_obj, &rtv->calc->new_start) == false)
+		c->cur_obj = -1;
+		if (object_intersect(rtv, &s->ray, &c->cur_obj, &c->new_start) == false)
 			break;
-		if (normal_of_intersect(&rtv->calc->intersect_normal, &rtv->calc->new_start, rtv->scene->objects, rtv->calc->cur_obj) == false)
+		if (normal_of_intersect(&c->intersect_normal,
+			&c->new_start, s->objects, c->cur_obj) == false)
 			break;
-		rtv->calc->material_n = rtv->scene->objects[rtv->calc->cur_obj]->material;
-		rtv->calc->cur_mat = *rtv->scene->materials[rtv->scene->objects[rtv->calc->cur_obj]->material];
+		c->material_n = s->objects[c->cur_obj]->material;
+		c->cur_mat = *s->materials[s->objects[c->cur_obj]->material];
 		calculate_light(rtv);
 		calculate_reflection(rtv);
 	}

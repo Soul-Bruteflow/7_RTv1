@@ -1,7 +1,6 @@
 #ifndef _OBJECTS_H
 #define _OBJECTS_H
 
-//# include "includes.h"
 # include "vectors.h"
 # include "raytrace.h"
 # include "bool.h"
@@ -47,7 +46,6 @@ typedef struct	s_cylinder
 typedef struct	s_cone
 {
 	float		angle;
-//	t_vec3d		tip;
 	t_vec3d		axis;
 }				t_cone;
 
@@ -57,8 +55,6 @@ typedef struct	s_cone
 typedef struct	s_obj3d
 {
 	void		*type;
-//	t_vec3d		cone_norm;
-//	t_vec3d		tip;
 	t_obj_type	obj_type;
 	t_bool		hit;
 	t_vec3d		pos;

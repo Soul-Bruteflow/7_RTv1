@@ -14,13 +14,6 @@ t_bool	running(SDL_Event *event, const Uint8 **key_state)
 
 void	rtv_loop(t_rtv *rtv)
 {
-//	raycast_init(wolf);
-//	wolf_font_init(wolf);
-//	wolf_audio_init(wolf);
 	while ((running(&rtv->sdl->event, &rtv->sdl->key_state)))
-	{
-//		raycast_core(wolf);
-//		update_time(wolf);
 		keyboard_core(rtv);
-	}
 }

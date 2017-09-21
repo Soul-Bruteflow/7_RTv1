@@ -25,15 +25,16 @@ t_bool	object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj, t_vec3d *new_start)
 
 /*
 ** Find the normal for this new vector at the point of intersection.
+** n - normal; s - new_start;
 */
-t_bool normal_of_intersect(t_vec3d *normal, t_vec3d *new_start, t_obj3d **objects, int cur_obj)
+t_bool normal_of_intersect(t_vec3d *n, t_vec3d *s, t_obj3d **objs, int cur_obj)
 {
 	float temp;
-	*normal = vec3d_sub(new_start, &objects[cur_obj]->pos);
-	temp = vec3d_dot(normal, normal);
+	*n = vec3d_sub(s, &objs[cur_obj]->pos);
+	temp = vec3d_dot(n, n);
 	if(temp == 0)
 		return (false);
 	temp = 1.0f / sqrtf(temp);
-	*normal = vec3d_scale(temp, normal);
+	*n = vec3d_scale(temp, n);
 	return (true);
 }

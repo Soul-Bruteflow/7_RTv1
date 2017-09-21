@@ -38,7 +38,8 @@ t_vec3d vec3d_scale(float c, t_vec3d *v)
 	return (result);
 }
 
-t_vec3d vec3d_cross(t_vec3d *v1, t_vec3d *v2){
+t_vec3d vec3d_cross(t_vec3d *v1, t_vec3d *v2)
+{
 	t_vec3d result;
 
 	result.x = (v1->y * v2->z) - (v1->z * v2->y);

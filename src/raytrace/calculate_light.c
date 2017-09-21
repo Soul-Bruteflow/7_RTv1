@@ -46,17 +46,16 @@ void calculate_reflection(t_rtv *rtv)
 */
 void calculate_light(t_rtv *rtv)
 {
-	int			j;
 	t_light		cur_light;
 	t_vec3d		dist;
 	float		t2;
 	t_ray		light_ray;
+	float 		lamb;
 
-	j = -1;
-	while(j++ < rtv->scene->lits_n - 1)
+	rtv->calc->i = -1;
+	while(rtv->calc->i++ < rtv->scene->lits_n - 1)
 	{
-		cur_light = *rtv->scene->lights[j];
-
+		cur_light = *rtv->scene->lights[rtv->calc->i];
 		dist = vec3d_sub(&cur_light.pos, &rtv->calc->new_start);
 		if(vec3d_dot(&rtv->calc->intersect_normal, &dist) <= 0.0f)
 			continue;
@@ -67,7 +66,8 @@ void calculate_light(t_rtv *rtv)
 		light_ray.dir = vec3d_scale(1/t2, &dist);
 		if (!(calculate_shadows(rtv, rtv->scene->objects, &light_ray, &t2)))
 		{
-			float lamb = lambert(&light_ray, &rtv->calc->intersect_normal, &rtv->calc->coef);
+			lamb = lambert(&light_ray,
+					&rtv->calc->intersect_normal, &rtv->calc->coef);
 			lamb_dif(lamb, &rtv->calc->color, cur_light, rtv->calc->cur_mat);
 		}
 	}

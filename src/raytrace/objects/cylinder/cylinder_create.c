@@ -19,9 +19,9 @@ void	set_cylinder_radius(t_obj3d *obj, float new_radius)
 	tmp_cylinder->radius = new_radius;
 }
 
-void	set_cylinder(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material)
+void	set_cylinder(t_obj3d *o, t_vec3d new_pos, float new_rad, Uint16 new_mat)
 {
-	set_object_position(obj, new_position);
-	set_object_material(obj, new_material);
-	set_cylinder_radius(obj, new_radius);
+	set_object_position(o, new_pos);
+	set_object_material(o, new_mat);
+	set_cylinder_radius(o, new_rad);
 }
