@@ -40,7 +40,7 @@ void	set_cylinder_b(t_obj3d *obj, t_vec3d b)
 
 void	set_cylinder(t_obj3d *o, t_vec3d *ab, float new_rad, Uint16 new_mat)
 {
-	set_object_position(o, ab[0]);
+	set_object_position(o, ab[1]);
 	set_cylinder_a(o, ab[0]);
 	set_cylinder_b(o, ab[1]);
 	set_object_material(o, new_mat);
