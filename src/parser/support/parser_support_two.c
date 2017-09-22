@@ -78,5 +78,7 @@ t_bool valid_material(t_rtv *r, Uint16 *material, int min, int max)
 	if (!(parse_number(r, &tmp, min, max)))
 		return (false);
 	*material = (Uint16)tmp;
+	if (tmp > r->scene->mats_n - 1)
+		return (false);
 	return (true);
 }
