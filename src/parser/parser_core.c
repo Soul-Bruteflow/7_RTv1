@@ -26,17 +26,5 @@ t_bool	parser_core(t_rtv *r)
 		rtv_error(parse_error);
 	gnl_error(r, r->pars->n);
 	close_file(r);
-
-	t_cylinder 	*cy;
-
-	cy = r->scene->objects[3]->type;
-	cy->a.x = 200;
-	cy->a.y = 200;
-	cy->a.z = 200;
-
-	cy->b.x = 600;
-	cy->b.y = 600;
-	cy->b.z = 600;
-
 	return (true);
 }

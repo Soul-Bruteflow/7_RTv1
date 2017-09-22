@@ -13,8 +13,8 @@
 #ifndef __GET_NEXT_LINE_H
 # define __GET_NEXT_LINE_H
 
-# include "libft.h"
 # include <fcntl.h>
+# include "libft.h"
 
 # define BUFF_SIZE 1000
 # define PROTECT_N1(x) if (!x) return (-1);

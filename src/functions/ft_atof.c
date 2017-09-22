@@ -1,4 +1,3 @@
-#include "rtv.h"
 #include "libft.h"
 
 void 		skip_whitespaces(const char *s, int *i, float *fact)

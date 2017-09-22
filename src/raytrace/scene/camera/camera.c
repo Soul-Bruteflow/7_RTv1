@@ -13,9 +13,9 @@ void init_camera(t_rtv *r)
 	tm_cam->up.x = 0;
 	tm_cam->up.y = 1;
 	tm_cam->up.z = 0;
-	tm_cam->eye = ft_vec3d_unit(vec3d_sub(&tm_cam->d, &tm_cam->o));
-	tm_cam->vpRight = ft_vec3d_unit(vec3d_cross(&tm_cam->eye, &tm_cam->up));
-	tm_cam->vpUp = ft_vec3d_unit(vec3d_cross(&tm_cam->vpRight, &tm_cam->eye));
+	tm_cam->eye = vec3_norm(vec3_sub(&tm_cam->d, &tm_cam->o));
+	tm_cam->vpRight = vec3_norm(vec3_cross(&tm_cam->eye, &tm_cam->up));
+	tm_cam->vpUp = vec3_norm(vec3_cross(&tm_cam->vpRight, &tm_cam->eye));
 	fovRadians = PI * (tm_cam->fov / 2) / 180;
 	heightWidthRatio = FHEIGHT / FWIDTH;
 	tm_cam->halfWidth = tanf(fovRadians);

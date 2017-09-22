@@ -1,4 +1,4 @@
-#include "rtv_includes.h"
+#include "rtv.h"
 
 /*
 ** Solving the discriminant
@@ -7,24 +7,18 @@ static float	calculate_discriminant(t_ray *r, t_obj3d *o, float *b, float *a)
 {
 	float		c;
 	t_cylinder 	*cy;
+	t_vec3d		tmp[4];
 
 	cy = o->type;
 
-	t_vec3d AB = vec3d_sub(&cy->b, &cy->a);
-	t_vec3d AO = vec3d_sub(&r->start, &cy->a);
-	t_vec3d AOxAB = vec3d_cross(&AO, &AB); // cross product
-	t_vec3d VxAB  = vec3d_cross(&r->dir, &AB); // cross product
-	float  ab2   = vec3d_dot(&AB, &AB); // dot product
-	*a      = vec3d_dot(&VxAB, &VxAB); // dot product
-	*b      = 2 * vec3d_dot(&VxAB, &AOxAB); // dot product
-	c      = vec3d_dot(&AOxAB, &AOxAB) - (cy->radius * cy->radius * ab2);
-
-//	*a = powf(r->dir.x, 2) + powf(r->dir.z, 2);
-//	*b = (2 * (r->dir.x * (r->start.x - o->pos.x))) +
-//		(2 * (r->dir.z * (r->start.z - o->pos.z)));
-//	c = powf(r->start.x - o->pos.x, 2) +
-//		powf(r->start.z - o->pos.z, 2) -
-//		cy->radius * cy->radius;
+	tmp[0] = vec3_sub(&cy->b, &cy->a);
+	tmp[1] = vec3_sub(&r->start, &cy->a);
+	tmp[2] = vec3_cross(&tmp[1], &tmp[0]);
+	tmp[3]  = vec3_cross(&r->dir, &tmp[0]);
+	*a = vec3_dot(&tmp[3], &tmp[3]);
+	*b = 2 * vec3_dot(&tmp[3], &tmp[2]);
+	c = vec3_dot(&tmp[2], &tmp[2]) - (cy->radius * cy->radius *
+			(vec3_dot(&tmp[0], &tmp[0])));
 	return (*b * *b - 4 * *a * c);
 }
 

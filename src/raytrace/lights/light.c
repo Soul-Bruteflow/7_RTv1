@@ -1,5 +1,4 @@
 #include "rtv.h"
-#include "raytrace.h"
 
 t_light	*new_light()
 {

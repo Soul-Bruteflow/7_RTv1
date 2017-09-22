@@ -1,5 +1,5 @@
 #ifndef _BOOL_H
-#define _BOOL_H
+# define _BOOL_H
 
 /*
 ** Boolean replacement

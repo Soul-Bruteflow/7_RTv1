@@ -101,9 +101,13 @@ angle:
 material:
 					1
 cylinder:
-position:
-					2
-					90
+point a:
+					0
+					200
+					200
+point b:
+					0
+					600
 					200
 radius:
 					60

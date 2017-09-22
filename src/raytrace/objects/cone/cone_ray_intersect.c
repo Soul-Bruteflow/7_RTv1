@@ -1,4 +1,4 @@
-#include "rtv_includes.h"
+#include "rtv.h"
 
 /*
 ** Solving the discriminant
@@ -6,20 +6,21 @@
 static float	calculate_discriminant(t_ray *r, t_obj3d *o, float *b, float *a)
 {
 	t_cone *s;
-	s = o->type;
 	float c;
+	float dv;
+	float cov;
+	float tmp[3];
 
-	float dv = vec3d_dot(&r->dir, &s->axis);
-	t_vec3d co = vec3d_sub(&r->start, &o->pos);
-	float cov = vec3d_dot(&co, &s->axis);
-	float dco = vec3d_dot(&r->dir, &co);
-	float cos = powf(cosf(s->angle), 2);
-	float codot = vec3d_dot(&co, &co);
-
-	*a = powf(dv, 2) - cos;
-	*b = 2.0f * (dv * cov - dco * cos);
-	 c = powf(cov, 2) - codot * cos;
-
+	s = o->type;
+	dv = vec3_dot(&r->dir, &s->axis);
+	t_vec3d co = vec3_sub(&r->start, &o->pos);
+	cov = vec3_dot(&co, &s->axis);
+	tmp[0] = vec3_dot(&r->dir, &co);
+	tmp[1] = powf(cosf(s->angle), 2);
+	tmp[2] = vec3_dot(&co, &co);
+	*a = powf(dv, 2) - tmp[1];
+	*b = 2.0f * (dv * cov - tmp[0] * tmp[1]);
+	 c = powf(cov, 2) - tmp[2] * tmp[1];
 	return (powf(*b, 2) - (4 * *a * c));
 }
 

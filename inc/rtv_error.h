@@ -1,5 +1,5 @@
 #ifndef _RTV1_ERROR_H
-#define _RTV1_ERROR_H
+# define _RTV1_ERROR_H
 
 typedef enum		e_error
 {

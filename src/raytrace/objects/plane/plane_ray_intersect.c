@@ -1,4 +1,3 @@
-#include "objects.h"
 #include "rtv.h"
 
 t_bool intersect_plane_ray(t_ray *r, t_obj3d *obj, float *t)
@@ -9,11 +8,11 @@ t_bool intersect_plane_ray(t_ray *r, t_obj3d *obj, float *t)
 	t_vec3d		tmp;
 
 	p = obj->type;
-	denom = vec3d_dot(&r->dir, &p->normal);
+	denom = vec3_dot(&r->dir, &p->normal);
 	if (fabs(denom) >= 1e-1f)
 	{
-		tmp = vec3d_sub(&p->point, &r->start);
-		t0 = vec3d_dot(&tmp, &p->normal) / denom;
+		tmp = vec3_sub(&p->point, &r->start);
+		t0 = vec3_dot(&tmp, &p->normal) / denom;
 		if (t0 >= 1e-1f)
 		{
 			*t = t0;

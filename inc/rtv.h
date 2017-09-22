@@ -4,7 +4,6 @@
 # include <SDL2/SDL.h>
 # include "rtv_error.h"
 # include "objects.h"
-# include "libft.h"
 
 /*
 ** Basic SDL2 variables
@@ -103,7 +102,6 @@ typedef struct		s_rtv
 */
 void				rtv_error(t_error error_code);
 void				print_error_and_exit(const char *error_text, Uint8 sdl);
-
 /*
 ** Parser
 */
@@ -132,47 +130,41 @@ t_bool 				valid_material(t_rtv *r, Uint16 *material, int mi, int ma);
 /*
 ** RTv1
 */
-void	ft_noise(t_rtv *rtv);
-
+void				ft_noise(t_rtv *rtv);
 t_rtv				*rtv_init(char **av);
 void				rtv_loop(t_rtv *rtv);
 void				rtv_quit(t_rtv *rtv);
-
-
 /*
 ** Raycast
 */
 void				raytrace(t_rtv *rtv);
-t_bool				normal_of_intersect(t_vec3d *normal, t_vec3d *new_start, t_obj3d **objects, int cur_obj);
-t_bool	object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj, t_vec3d *new_start);
+t_bool				normal_of_intersect(t_vec3d *normal, t_vec3d *new_start,
+										t_obj3d **objects, int cur_obj);
+t_bool				object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj,
+									 t_vec3d *new_start);
 void				calculate_light(t_rtv *rtv);
 void				calculate_reflection(t_rtv *rtv);
-
 /*
 ** Scene
 */
-void init_camera(t_rtv *r);
-void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs);
-void create_sceen_one(t_scene *scene);
-t_bool	create_scene(t_rtv* r);
-t_obj3d *new_object(t_obj_type object_type);
-
+void 				init_camera(t_rtv *r);
+void 				new_scene(t_rtv *r, int n_of_lights,
+							  int n_of_mats, int n_of_objs);
+void 				create_sceen_one(t_scene *scene);
+t_bool				create_scene(t_rtv* r);
+t_obj3d 			*new_object(t_obj_type object_type);
 /*
 ** Keyboard
 */
 void				keyboard_core(t_rtv *rtv);
-
 /*
 ** Window
 */
-void	create_window(t_rtv *rtv, Uint16 wdth, Uint16 hght, const char *title);
-void	clear_window(t_rtv *rtv);
-void	render_present(t_rtv *rtv);
-void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer);
-
-/*
-** Math
-*/
-t_bool	equal_abs(float a, float b, float epsilon);
+void				create_window(t_rtv *rtv, Uint16 wdth, Uint16 hght,
+								  const char *title);
+void				clear_window(t_rtv *rtv);
+void				render_present(t_rtv *rtv);
+void				ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color,
+								  Uint8 *draw_buffer);
 
 #endif

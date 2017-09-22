@@ -1,8 +1,9 @@
 #ifndef _OBJECTS_H
-#define _OBJECTS_H
+# define _OBJECTS_H
 
-# include "vectors.h"
+# include <SDL2/SDL.h>
 # include "raytrace.h"
+# include "vectors.h"
 # include "bool.h"
 
 typedef enum	e_obj_type
@@ -74,7 +75,8 @@ void			set_object_material(t_obj3d *obj, Uint16 new_material);
 */
 t_plane 		*new_plane();
 void			set_plane_normal(t_obj3d *obj, t_vec3d new_normal);
-void			set_plane(t_obj3d *obj, t_vec3d new_normal, t_vec3d point, Uint16 new_material);
+void			set_plane(t_obj3d *obj, t_vec3d new_normal, t_vec3d point,
+						  Uint16 new_material);
 t_bool 			intersect_plane_ray(t_ray *r, t_obj3d *object, float *t);
 /*
 ** Sphere
@@ -88,14 +90,15 @@ t_bool 			intersect_sphere_ray(t_ray *r, t_obj3d *object, float *t);
 */
 t_cylinder		*new_cylinder();
 void			set_cylinder_radius(t_obj3d *obj, float new_radius);
-void			set_cylinder(t_obj3d *obj, t_vec3d new_position, float new_radius, Uint16 new_material);
+void			set_cylinder(t_obj3d *obj, t_vec3d *ab, float new_radius,
+							 Uint16 new_material);
 t_bool 			intersect_cylinder_ray(t_ray *r, t_obj3d *object, float *t);
 /*
 ** Cone
 */
 t_cone 			*new_cone();
-void			set_cone(t_obj3d *obj, t_vec3d *data, float angle, Uint16 new_material);
-void			set_cone_tip(t_obj3d *obj, t_vec3d new_tip);
+void			set_cone(t_obj3d *obj, t_vec3d *data, float angle,
+						 Uint16 new_material);
 void			set_cone_axis(t_obj3d *obj, t_vec3d new_axis);
 void			set_cone_angle(t_obj3d *obj, float new_angle);
 t_bool 			intersect_cone_ray(t_ray *r, t_obj3d *object, float *t);

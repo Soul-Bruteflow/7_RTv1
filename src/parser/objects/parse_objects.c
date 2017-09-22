@@ -1,4 +1,5 @@
 #include "rtv.h"
+#include "libft.h"
 
 t_bool	choose(t_rtv *r, int i)
 {

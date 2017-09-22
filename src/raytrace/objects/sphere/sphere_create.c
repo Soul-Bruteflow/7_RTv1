@@ -1,4 +1,3 @@
-#include "objects.h"
 #include "rtv.h"
 
 t_sphere *new_sphere()

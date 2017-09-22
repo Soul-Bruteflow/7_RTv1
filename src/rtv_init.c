@@ -1,7 +1,5 @@
-# include <SDL2/SDL.h>
-# include "rtv.h"
-# include "rtv_error.h"
-# include "rtv_defines.h"
+#include "rtv.h"
+#include "rtv_defines.h"
 
 /*
 ** type *pointer = malloc(num_elems * sizeof(*pointer));

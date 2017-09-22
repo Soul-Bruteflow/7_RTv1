@@ -1,6 +1,4 @@
 #include "rtv.h"
-#include "objects.h"
-#include "rtv_defines.h"
 
 /*
 ** Allocates memory for new scene. And all objects,

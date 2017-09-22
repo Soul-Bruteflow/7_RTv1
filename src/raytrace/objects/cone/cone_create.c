@@ -1,4 +1,3 @@
-#include "objects.h"
 #include "rtv.h"
 
 t_cone *new_cone()
@@ -16,7 +15,7 @@ void	set_cone_axis(t_obj3d *obj, t_vec3d new_axis)
 	t_cone *tmp_cone;
 
 	tmp_cone = obj->type;
-	new_axis = ft_vec3d_norm(new_axis);
+	new_axis = vec3_norm(new_axis);
 	tmp_cone->axis.x = new_axis.x;
 	tmp_cone->axis.y = new_axis.y;
 	tmp_cone->axis.z = new_axis.z;

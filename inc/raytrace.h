@@ -1,8 +1,7 @@
 #ifndef _RAYTRACE_H
-#define _RAYTRACE_H
+# define _RAYTRACE_H
 
 # include "vectors.h"
-# include <SDL2/SDL.h>
 
 /*
 ** RGBA color 0-255 definition
@@ -76,14 +75,12 @@ typedef struct	s_light
 */
 t_rgbap			ft_set_color(float r, float g, float b, float a);
 t_vec3d			ft_set_vector(float x, float y, float z);
-
 /*
 ** Camera
 */
 t_cam 			*create_perspective_cam(t_vec3d origin, t_vec3d target,
 										t_vec3d upguide, float fov_asp[]);
 void 			make_ray(t_cam *cam, t_vec2d point, t_ray *r);
-
 /*
 ** Material
 */
@@ -94,4 +91,5 @@ void			set_material(t_material *material, t_rgbap diffuse, float r);
 */
 t_light 		*new_light();
 void			set_light(t_light *light, t_vec3d pos, t_rgbap intensity);
+
 #endif

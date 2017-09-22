@@ -12,6 +12,9 @@
 
 #include "rtv.h"
 
+/*
+** b, g, r, a
+*/
 void	ft_noise(t_rtv *rtv)
 {
 	Uint16	i;
@@ -25,10 +28,10 @@ void	ft_noise(t_rtv *rtv)
 		x = (Uint16)(rand() % rtv->win->width);
 		y = (Uint16)(rand() % rtv->win->height);
 		offset = (Uint32)((rtv->win->width * 4 * y) + x * 4);
-		rtv->win->draw_buf[offset + 0] = (Uint8)(rand() % 256);		// b
-		rtv->win->draw_buf[offset + 1] = (Uint8)(rand() % 256);		// g
-		rtv->win->draw_buf[offset + 2] = (Uint8)(rand() % 256);		// r
-		rtv->win->draw_buf[offset + 3] = SDL_ALPHA_OPAQUE;			// a
+		rtv->win->draw_buf[offset + 0] = (Uint8)(rand() % 256);
+		rtv->win->draw_buf[offset + 1] = (Uint8)(rand() % 256);
+		rtv->win->draw_buf[offset + 2] = (Uint8)(rand() % 256);
+		rtv->win->draw_buf[offset + 3] = SDL_ALPHA_OPAQUE;
 		i++;
 	}
 }

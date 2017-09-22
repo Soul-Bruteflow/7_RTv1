@@ -1,6 +1,5 @@
 #include "rtv.h"
-#include "string.h"
-#include "rtv_defines.h"
+#include "libft.h"
 
 /*
 ** Parses float values in to the float.

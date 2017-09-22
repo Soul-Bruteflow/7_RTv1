@@ -1,6 +1,4 @@
-# include <SDL2/SDL.h>
-# include "bool.h"
-# include "rtv.h"
+#include "rtv.h"
 
 t_bool	running(SDL_Event *event, const Uint8 **key_state)
 {
