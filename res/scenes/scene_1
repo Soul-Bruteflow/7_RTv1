@@ -69,7 +69,7 @@ reflection:
 objects:
 plane:
 normal:
-					2
+					-90
 					90
 					200
 point:

@@ -35,6 +35,8 @@ typedef struct	s_plane
 */
 typedef struct	s_cylinder
 {
+	t_vec3d		a;
+	t_vec3d		b;
 	float		radius;
 }				t_cylinder;
 
