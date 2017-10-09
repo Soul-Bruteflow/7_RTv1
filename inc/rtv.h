@@ -1,9 +1,10 @@
 #ifndef _RTV1_H
 # define _RTV1_H
 
-# include <SDL2/SDL.h>
+# include <SDL.h>
 # include "rtv_error.h"
 # include "objects.h"
+# include "bool.h"
 
 /*
 ** Basic SDL2 variables
