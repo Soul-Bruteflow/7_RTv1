@@ -1,5 +1,17 @@
-#ifndef _RTV1_H
-# define _RTV1_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rtv.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/09 15:03:42 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 16:01:41 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef __RTV_H
+# define __RTV_H
 
 # include <SDL2/SDL.h>
 # include "rtv_error.h"
@@ -30,11 +42,11 @@ typedef struct		s_win
 {
 	SDL_Texture		*screen;
 	Uint8			*draw_buf;
-	int 			pitch;
+	int				pitch;
 	size_t			offset;
 	Uint16			width;
 	Uint16			height;
-	char 			*title;
+	char			*title;
 }					t_win;
 
 /*
@@ -48,15 +60,15 @@ typedef struct		s_scene
 	t_ray			ray;
 	t_cam			cam;
 	t_vec2d			point;
-	int 			objs_n;
+	int				objs_n;
 	int				mats_n;
-	int 			lits_n;
+	int				lits_n;
 }					t_scene;
 
 /*
 ** Support struct for calculation
 */
-typedef	struct 		s_calc
+typedef struct		s_calc
 {
 	t_rgbap			color;
 	t_rgba			pixel_color;
@@ -69,17 +81,17 @@ typedef	struct 		s_calc
 	int				material_n;
 	float			reflect;
 	t_vec3d			tmp;
-	int 			i;
+	int				i;
 	int				n;
 }					t_calc;
 
 /*
 ** Parser struct
 */
-typedef	struct 		s_pars
+typedef	struct		s_pars
 {
-	int 			fd;
-	int 			n;
+	int				fd;
+	int				n;
 	char			**av;
 	char			*line;
 }					t_pars;
@@ -90,7 +102,7 @@ typedef	struct 		s_pars
 */
 typedef struct		s_rtv
 {
-	char 			**av;
+	char			**av;
 	t_sdl			*sdl;
 	t_win			*win;
 	t_scene			*scene;
@@ -121,13 +133,13 @@ void				open_file(t_rtv *r);
 void				close_file(t_rtv *r);
 void				gnl_error(t_rtv *r, int i);
 float				ft_atof(const char *s);
-t_bool 				get_str(t_rtv *r);
+t_bool				get_str(t_rtv *r);
 t_bool				parse_vector(t_rtv *r, t_vec3d *v, int min, int max);
 t_bool				parse_number(t_rtv *r, float *n, int min, int max);
-t_bool 				parse_color(t_rtv *r, t_rgbap *c, float min, float max);
-t_bool 				parse_float_number(t_rtv *r, float *n, float mi, float ma);
+t_bool				parse_color(t_rtv *r, t_rgbap *c, float min, float max);
+t_bool				parse_float_number(t_rtv *r, float *n, float mi, float ma);
 t_bool				check_line(t_rtv *r, const char *s);
-t_bool 				valid_material(t_rtv *r, Uint16 *material, int mi, int ma);
+t_bool				valid_material(t_rtv *r, Uint16 *material, int mi, int ma);
 /*
 ** RTv1
 */
@@ -140,20 +152,20 @@ void				rtv_quit(t_rtv *rtv);
 */
 void				raytrace(t_rtv *rtv);
 t_bool				normal_of_intersect(t_vec3d *normal, t_vec3d *new_start,
-										t_obj3d **objects, int cur_obj);
+					t_obj3d **objects, int cur_obj);
 t_bool				object_intersect(t_rtv *rtv, t_ray *r, int *cur_obj,
-									 t_vec3d *new_start);
+					t_vec3d *new_start);
 void				calculate_light(t_rtv *rtv);
 void				calculate_reflection(t_rtv *rtv);
 /*
 ** Scene
 */
-void 				init_camera(t_rtv *r);
-void 				new_scene(t_rtv *r, int n_of_lights,
-							  int n_of_mats, int n_of_objs);
-void 				create_sceen_one(t_scene *scene);
-t_bool				create_scene(t_rtv* r);
-t_obj3d 			*new_object(t_obj_type object_type);
+void				init_camera(t_rtv *r);
+void				new_scene(t_rtv *r, int n_of_lights,
+					int n_of_mats, int n_of_objs);
+void				create_sceen_one(t_scene *scene);
+t_bool				create_scene(t_rtv *r);
+t_obj3d				*new_object(t_obj_type object_type);
 /*
 ** Keyboard
 */
@@ -162,10 +174,10 @@ void				keyboard_core(t_rtv *rtv);
 ** Window
 */
 void				create_window(t_rtv *rtv, Uint16 wdth, Uint16 hght,
-								  const char *title);
+					const char *title);
 void				clear_window(t_rtv *rtv);
 void				render_present(t_rtv *rtv);
 void				ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color,
-								  Uint8 *draw_buffer);
+					Uint8 *draw_buffer);
 
 #endif

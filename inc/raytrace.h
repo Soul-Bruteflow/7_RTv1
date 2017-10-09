@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytrace.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:15 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 16:04:03 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef _RAYTRACE_H
 # define _RAYTRACE_H
 
@@ -35,12 +47,12 @@ typedef struct	s_cam
 	t_vec3d		up;
 	float		fov;
 	t_vec3d		eye;
-	t_vec3d		vpRight;
-	t_vec3d		vpUp;
-	float		pixelWidth;
-	float		pixelHeight;
-	float		halfWidth;
-	float		halfHeight;
+	t_vec3d		vp_right;
+	t_vec3d		vp_up;
+	float		pixel_width;
+	float		pixel_height;
+	float		half_width;
+	float		half_height;
 }				t_cam;
 
 /*
@@ -78,18 +90,18 @@ t_vec3d			ft_set_vector(float x, float y, float z);
 /*
 ** Camera
 */
-t_cam 			*create_perspective_cam(t_vec3d origin, t_vec3d target,
-										t_vec3d upguide, float fov_asp[]);
-void 			make_ray(t_cam *cam, t_vec2d point, t_ray *r);
+t_cam			*create_perspective_cam(t_vec3d origin, t_vec3d target,
+				t_vec3d upguide, float fov_asp[]);
+void			make_ray(t_cam *cam, t_vec2d point, t_ray *r);
 /*
 ** Material
 */
-t_material 		*new_material();
+t_material		*new_material();
 void			set_material(t_material *material, t_rgbap diffuse, float r);
 /*
 ** Light
 */
-t_light 		*new_light();
+t_light			*new_light();
 void			set_light(t_light *light, t_vec3d pos, t_rgbap intensity);
 
 #endif
