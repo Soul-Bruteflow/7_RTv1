@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_support_two.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:21:11 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 #include "libft.h"
 
@@ -8,6 +20,7 @@
 t_bool	parse_float_number(t_rtv *r, float *n, float min, float max)
 {
 	float tmp;
+
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
 	{
 		tmp = ft_atof(r->pars->line);
@@ -71,7 +84,7 @@ t_bool	check_line(t_rtv *r, const char *s)
 ** Parses and checks if the parsed material value is valid.
 */
 
-t_bool valid_material(t_rtv *r, Uint16 *material, int min, int max)
+t_bool	valid_material(t_rtv *r, Uint16 *material, int min, int max)
 {
 	float tmp;
 

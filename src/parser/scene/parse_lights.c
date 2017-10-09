@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_lights.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:18:31 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 #include "rtv_defines.h"
-
 
 static t_bool	parse_lights_position(t_rtv *r)
 {
@@ -42,7 +53,7 @@ static t_bool	parse_lights_color(t_rtv *r)
 	return (true);
 }
 
-t_bool parse_lights(t_rtv *r)
+t_bool			parse_lights(t_rtv *r)
 {
 	if (!(parse_lights_position(r)))
 		return (false);

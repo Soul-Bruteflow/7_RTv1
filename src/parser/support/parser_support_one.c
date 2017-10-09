@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_support_one.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:21:23 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
-# include "get_next_line.h"
+#include "get_next_line.h"
 
 /*
 ** Closes the file, and checks for the errors.
@@ -39,9 +51,10 @@ void	gnl_error(t_rtv *r, int i)
 ** Parses int values in to the float.
 */
 
-t_bool parse_number(t_rtv *r, float *n, int min, int max)
+t_bool	parse_number(t_rtv *r, float *n, int min, int max)
 {
 	float tmp;
+
 	if ((r->pars->n = get_next_line(r->pars->fd, &r->pars->line)) == 1)
 	{
 		tmp = ft_atoi(r->pars->line);
@@ -59,7 +72,7 @@ t_bool parse_number(t_rtv *r, float *n, int min, int max)
 ** Parses line by line vector values.
 */
 
-t_bool parse_vector(t_rtv *r, t_vec3d *v, int min, int max)
+t_bool	parse_vector(t_rtv *r, t_vec3d *v, int min, int max)
 {
 	if (!(parse_number(r, &v->x, min, max)))
 		return (false);

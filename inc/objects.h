@@ -1,7 +1,7 @@
 #ifndef _OBJECTS_H
 # define _OBJECTS_H
 
-# include <SDL.h>
+# include <SDL2/SDL.h>
 # include "raytrace.h"
 # include "vectors.h"
 # include "bool.h"

@@ -1,7 +1,7 @@
 #ifndef _RTV1_H
 # define _RTV1_H
 
-# include <SDL.h>
+# include <SDL2/SDL.h>
 # include "rtv_error.h"
 # include "objects.h"
 # include "bool.h"

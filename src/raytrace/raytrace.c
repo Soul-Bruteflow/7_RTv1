@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytrace.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:27:59 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 #include "rtv_defines.h"
 
-static t_rgba set_pixel_color(t_rtv *rtv)
+static t_rgba	set_pixel_color(t_rtv *rtv)
 {
 	t_rgba color;
 
@@ -12,11 +24,11 @@ static t_rgba set_pixel_color(t_rtv *rtv)
 	return (color);
 }
 
-static void set_raytrace(t_rtv *r, Uint16 x, Uint16 y)
+static void		set_raytrace(t_rtv *r, Uint16 x, Uint16 y)
 {
 	t_vec3d xcomp;
 	t_vec3d ycomp;
-	t_cam 	*c;
+	t_cam	*c;
 
 	c = &r->scene->cam;
 	r->calc->level = 1;
@@ -29,21 +41,21 @@ static void set_raytrace(t_rtv *r, Uint16 x, Uint16 y)
 	r->scene->ray.dir = vec3_norm(vec3_add3(c->eye, xcomp, ycomp));
 }
 
-static void calculate_ray(t_rtv *rtv)
+static void		calculate_ray(t_rtv *rtv)
 {
 	t_calc		*c;
 	t_scene		*s;
 
 	c = rtv->calc;
 	s = rtv->scene;
-	while((c->coef > 0.01f) && (c->level++ < 15))
+	while ((c->coef > 0.01f) && (c->level++ < 15))
 	{
 		c->cur_obj = -1;
 		if (object_intersect(rtv, &s->ray, &c->cur_obj, &c->new_start) == false)
-			break;
+			break ;
 		if (normal_of_intersect(&c->intersect_normal,
 			&c->new_start, s->objects, c->cur_obj) == false)
-			break;
+			break ;
 		c->material_n = s->objects[c->cur_obj]->material;
 		c->cur_mat = *s->materials[s->objects[c->cur_obj]->material];
 		calculate_light(rtv);
@@ -51,7 +63,7 @@ static void calculate_ray(t_rtv *rtv)
 	}
 }
 
-void raytrace(t_rtv *rtv)
+void			raytrace(t_rtv *rtv)
 {
 	Uint16 x;
 	Uint16 y;

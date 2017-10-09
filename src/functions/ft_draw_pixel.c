@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_pixel.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:11:47 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 #include "rtv_defines.h"
 
 /*
 ** 0 - blue, 1 - green, 2 - red, 3 - alpha;
 */
+
 void	ft_draw_pixel(Uint16 x, Uint16 y, t_rgba *color, Uint8 *draw_buffer)
 {
 	Uint32	offset;

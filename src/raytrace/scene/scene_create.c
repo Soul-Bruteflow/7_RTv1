@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene_create.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:45:05 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 
 /*
@@ -7,7 +19,7 @@
 
 t_bool	new_lights(t_rtv *r)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < r->scene->lits_n)
@@ -20,7 +32,7 @@ t_bool	new_lights(t_rtv *r)
 
 t_bool	new_materials(t_rtv *r)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < r->scene->mats_n)
@@ -31,7 +43,7 @@ t_bool	new_materials(t_rtv *r)
 	return (true);
 }
 
-void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs)
+void	new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs)
 {
 	r->scene->objects = malloc(n_of_objs * sizeof(r->scene->objects));
 	if (r->scene->objects == NULL)
@@ -44,7 +56,7 @@ void new_scene(t_rtv *r, int n_of_lights, int n_of_mats, int n_of_objs)
 		rtv_error(malloc_error);
 }
 
-t_bool	create_scene(t_rtv* r)
+t_bool	create_scene(t_rtv *r)
 {
 	new_scene(r, r->scene->lits_n, r->scene->mats_n, r->scene->objs_n);
 	if (!(new_lights(r)))
@@ -54,7 +66,7 @@ t_bool	create_scene(t_rtv* r)
 	return (true);
 }
 
-t_obj3d *new_object(t_obj_type object_type)
+t_obj3d	*new_object(t_obj_type object_type)
 {
 	t_obj3d *new_obj;
 

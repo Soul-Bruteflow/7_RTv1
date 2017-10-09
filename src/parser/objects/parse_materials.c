@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_materials.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:16:00 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv.h"
 #include "rtv_defines.h"
 
@@ -43,7 +55,7 @@ static t_bool	parse_mats_reflection(t_rtv *r)
 	return (true);
 }
 
-t_bool parse_materials(t_rtv *r)
+t_bool			parse_materials(t_rtv *r)
 {
 	if (!(parse_mats_color(r)))
 		return (false);

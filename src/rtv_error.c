@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf_error.c                                       :+:      :+:    :+:   */
+/*   rtv_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvlad <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 12:24:32 by mvlad             #+#    #+#             */
-/*   Updated: 2017/06/08 12:24:54 by mvlad            ###   ########.fr       */
+/*   Updated: 2017/10/09 15:07:16 by mvlad            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "rtv_error.h"
 
 void	print_error_and_exit(const char *error_text, Uint8 sdl)

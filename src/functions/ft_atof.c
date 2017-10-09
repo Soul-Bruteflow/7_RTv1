@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvlad <mvlad@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/04 11:39:16 by mvlad             #+#    #+#             */
+/*   Updated: 2017/10/09 15:11:15 by mvlad            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void 		skip_whitespaces(const char *s, int *i, float *fact)
+void	skip_whitespaces(const char *s, int *i, float *fact)
 {
-	int j;
-	float tmp;
+	int		j;
+	float	tmp;
 
 	j = 0;
 	tmp = 1;
-	while ((ft_isspace(s[j]) !=0 || s[j] == '+') && s[j] != '\0')
+	while ((ft_isspace(s[j]) != 0 || s[j] == '+') && s[j] != '\0')
 		j++;
 	if (s[j] == '-')
 	{
@@ -18,7 +30,7 @@ void 		skip_whitespaces(const char *s, int *i, float *fact)
 	*fact = tmp;
 }
 
-float		ft_atof(const char *s)
+float	ft_atof(const char *s)
 {
 	float		rez[2];
 	int			d[2];
@@ -44,5 +56,5 @@ float		ft_atof(const char *s)
 		}
 		i++;
 	}
-	return rez[0] * rez[1];
+	return (rez[0] * rez[1]);
 }
