@@ -26,15 +26,15 @@ void	init_camera(t_rtv *r)
 	tm_cam->up.y = 1;
 	tm_cam->up.z = 0;
 	tm_cam->eye = vec3_norm(vec3_sub(&tm_cam->d, &tm_cam->o));
-	tm_cam->vpRight = vec3_norm(vec3_cross(&tm_cam->eye, &tm_cam->up));
-	tm_cam->vpUp = vec3_norm(vec3_cross(&tm_cam->vpRight, &tm_cam->eye));
+	tm_cam->vp_right = vec3_norm(vec3_cross(&tm_cam->eye, &tm_cam->up));
+	tm_cam->vp_up = vec3_norm(vec3_cross(&tm_cam->vp_right, &tm_cam->eye));
 	fov_radians = PI * (tm_cam->fov / 2) / 180;
 	height_width_ratio = FHEIGHT / FWIDTH;
-	tm_cam->halfWidth = tanf(fov_radians);
-	tm_cam->halfHeight = height_width_ratio * tm_cam->halfWidth;
-	camerawidth = tm_cam->halfWidth * 2;
-	cameraheight = tm_cam->halfHeight * 2;
-	tm_cam->pixelWidth = camerawidth / (FWIDTH - 1);
-	tm_cam->pixelHeight = cameraheight / (FHEIGHT - 1);
+	tm_cam->half_width = tanf(fov_radians);
+	tm_cam->half_height = height_width_ratio * tm_cam->half_width;
+	camerawidth = tm_cam->half_width * 2;
+	cameraheight = tm_cam->half_height * 2;
+	tm_cam->pixel_width = camerawidth / (FWIDTH - 1);
+	tm_cam->pixel_height = cameraheight / (FHEIGHT - 1);
 	r->scene->ray.start = tm_cam->o;
 }

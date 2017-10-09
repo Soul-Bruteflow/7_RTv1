@@ -13,9 +13,7 @@
 #ifndef _OBJECTS_H
 # define _OBJECTS_H
 
-# include <SDL2/SDL.h>
 # include "raytrace.h"
-# include "vectors.h"
 # include "bool.h"
 
 typedef enum	e_obj_type

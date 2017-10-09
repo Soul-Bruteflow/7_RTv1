@@ -17,9 +17,9 @@ static t_rgba	set_pixel_color(t_rtv *rtv)
 {
 	t_rgba color;
 
-	color.red = (unsigned char)min(rtv->calc->color.red * 255.0f, 255.0f);
-	color.green = (unsigned char)min(rtv->calc->color.green * 255.0f, 255.0f);
-	color.blue = (unsigned char)min(rtv->calc->color.blue * 255.0f, 255.0f);
+	color.red = (unsigned char)MIN(rtv->calc->color.red * 255.0f, 255.0f);
+	color.green = (unsigned char)MIN(rtv->calc->color.green * 255.0f, 255.0f);
+	color.blue = (unsigned char)MIN(rtv->calc->color.blue * 255.0f, 255.0f);
 	color.alpha = SDL_ALPHA_OPAQUE;
 	return (color);
 }
@@ -36,8 +36,8 @@ static void		set_raytrace(t_rtv *r, Uint16 x, Uint16 y)
 	r->calc->color.red = 0;
 	r->calc->color.green = 0;
 	r->calc->color.blue = 0;
-	xcomp = vec3_scale(((x * c->pixelWidth) - c->halfWidth), &c->vpRight);
-	ycomp = vec3_scale(((y * c->pixelHeight) - c->halfHeight), &c->vpUp);
+	xcomp = vec3_scale(((x * c->pixel_width) - c->half_width), &c->vp_right);
+	ycomp = vec3_scale(((y * c->pixel_height) - c->half_height), &c->vp_up);
 	r->scene->ray.dir = vec3_norm(vec3_add3(c->eye, xcomp, ycomp));
 }
 

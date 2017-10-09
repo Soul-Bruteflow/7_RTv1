@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "rtv_error.h"
 
 void	print_error_and_exit(const char *error_text, Uint8 sdl)

@@ -13,7 +13,7 @@
 #ifndef __RTV_H
 # define __RTV_H
 
-# include <SDL2/SDL.h>
+# include <SDL.h>
 # include "rtv_error.h"
 # include "objects.h"
 # include "bool.h"
